@@ -48,10 +48,11 @@
         }
         
         .content-section img {
-            max-width: 100%;
+            max-width: 64%;
             height: auto;
             border-radius: 12px;
-            margin: 25px 0;
+            margin: 25px auto;
+            display: block;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 3px solid #e67e22;
         }
@@ -77,10 +78,11 @@
         }
         
         .dish-section img {
-            max-width: 100%;
+            max-width: 64%;
             height: auto;
             border-radius: 10px;
-            margin: 15px 0;
+            margin: 15px auto;
+            display: block;
         }
         
         .navigation {
@@ -108,14 +110,6 @@
             transform: translateY(-3px);
         }
         
-        .highlight {
-            background: linear-gradient(135deg, #fff9c4 0%, #ffeb3b 100%);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 25px 0;
-            border-left: 4px solid #ffc107;
-        }
-        
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -129,6 +123,11 @@
             .btn {
                 display: block;
                 margin: 10px 0;
+            }
+            
+            .content-section img,
+            .dish-section img {
+                max-width: 95%;
             }
         }
     </style>
@@ -144,11 +143,7 @@
             
             <img src="https://imgur.com/6g8KcEJ.jpg" alt="Portuguese Cuisine" width="600" height="625">
             
-            <div class="highlight">
-                <p><strong>Cultural Heritage:</strong> Macanese cuisine was included in the list of Macau's intangible cultural heritage (非物質文化遺產) in 2012 and is protected and promoted by government agencies.</p>
-            </div>
-            
-            <p>Macanese cuisine builds upon Portuguese culinary traditions while incorporating Chinese influences, using seasonal ingredients and spices from Europe, South America, Africa, and Southeast Asia. Its unique flavors are simply irresistible.</p>
+            <p>Macanese cuisine builds upon Portuguese culinary traditions while incorporating Chinese influences, using seasonal ingredients and spices from Europe, South America, Africa, and Southeast Asia. Its unique flavors are simply irresistible. In addition, it was included in the list of Macau's intangible cultural heritage (非物質文化遺產) in 2012 and is protected and promoted by government agencies.</p>
             
             <p>The signature dishes in Macau show a vibrant fusion of flavors, including Bacalhau balls (salt cod fritters), curry crab, Portuguese seafood rice, and Portuguese egg tarts. These dishes showcase a harmonious blend of ingredients, combining the traditional cooking methods with influences from Portuguese and Asian cuisines.</p>
         </div>
@@ -182,9 +177,7 @@
         </div>
 
         <div class="content-section">
-            <div class="highlight">
-                <p><strong>Cultural Significance:</strong> These signature dishes in Macau not only provide the unique flavors to delight the palate, but also tell the story of the region's historical connections and cultural exchanges.</p>
-            </div>
+            <p>These signature dishes in Macau not only provide the unique flavors to delight the palate, but also tell the story of the region's historical connections and cultural exchanges.</p>
         </div>
         
         <div class="navigation">
