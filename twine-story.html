@@ -9,6 +9,16 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play GBA Digital Learning in Twine.</tw-noscript></noscript></tw-story>
+$(document).one('showpassage:after', function(ev) {
+    var hash = window.location.hash.substring(1);
+    if (hash) {
+        var passageName = decodeURIComponent(hash).replace(/_/g, ' ');
+        var $link = $('tw-link:contains("' + passageName + '")');
+        if ($link.length) {
+            $link[0].click();
+        }
+    }
+});
 <tw-storydata name="GBA Digital Learning in Twine" startnode="1" creator="Twine" creator-version="2.10.0" format="Harlowe" format-version="3.3.9" ifid="4ED4C919-0C48-4E30-9B4B-38D654FD4720" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Home" tags="" position="500,200" size="100,100">(text-style:&quot;underline&quot;)[&#39;&#39;Creating Interactive Learning Experiences about Greater Bay Area (GBA) with Innovative Scenario-based Teaching through Digital Inbound Approach in Twine&#39;&#39;]
 
 “9+2” cities in the GBA
