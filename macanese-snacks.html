@@ -48,10 +48,11 @@
         }
         
         .content-section img {
-            max-width: 100%;
+            max-width: 64%;
             height: auto;
             border-radius: 12px;
-            margin: 25px 0;
+            margin: 25px auto;
+            display: block;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 3px solid #e67e22;
         }
@@ -77,10 +78,11 @@
         }
         
         .snack-section img {
-            max-width: 100%;
+            max-width: 64%;
             height: auto;
             border-radius: 10px;
-            margin: 15px 0;
+            margin: 15px auto;
+            display: block;
         }
         
         .navigation {
@@ -108,24 +110,6 @@
             transform: translateY(-3px);
         }
         
-        .highlight {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 25px 0;
-            border-left: 4px solid #2196f3;
-        }
-        
-        .award-badge {
-            background: linear-gradient(135deg, #fff9c4 0%, #ffeb3b 100%);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin: 20px 0;
-            border: 2px solid #ffc107;
-            font-weight: bold;
-        }
-        
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -140,6 +124,11 @@
                 display: block;
                 margin: 10px 0;
             }
+            
+            .content-section img,
+            .snack-section img {
+                max-width: 95%;
+            }
         }
     </style>
 </head>
@@ -150,48 +139,29 @@
         </div>
         
         <div class="content-section">
-            <div class="award-badge">
-                <p>🏆 Macau was awarded the title of "UNESCO Creative City of Gastronomy" (聯合國教科文組織──"創意城市美食之都) in 2017</p>
-            </div>
+            <p>Macau was awarded the title of "The city's UNESCO Creative City of Gastronomy status" (聯合國教科文組織──"創意城市美食之都) in 2017, which is a recognition of Macau's food culture. Macau's authentic local snacks include pork chop buns, meat jerky, and almond cookies.</p>
             
-            <p>This prestigious recognition celebrates Macau's rich food culture and its unique blend of culinary traditions. Macau's authentic local snacks include pork chop buns, meat jerky, and almond cookies.</p>
-        </div>
-
-        <!-- Pork Chop Bun Section -->
-        <div class="snack-section">
-            <h3>Pork Chop Bun (豬排包)</h3>
             <img src="https://imgur.com/SL0Ox6G.jpg" alt="Pork Chop Bun" width="600" height="600">
+            
             <p>The pork chop bun (豬排包) is Macau's version of a hamburger. A crispy toasted bun holds a grilled pork chop - uniquely served without vegetables or condiments to highlight the pure flavor of the grilled meat.</p>
-        </div>
-
-        <!-- Meat Jerky Section -->
-        <div class="snack-section">
-            <h3>Meat Jerky (肉乾)</h3>
+            
             <img src="https://imgur.com/w9AhAmx.jpg" alt="Meat Jerky" width="600" height="600">
-            <p>Meat jerky (肉乾) has deep roots in the culinary history of Macau, reflecting the influences of both Chinese and Portuguese cultures. The process of making jerky involves marinating meat in a blend of spices and then air-drying it. It is originally a method for preserving meat.</p>
+            
+            <p>Meat jerky (肉乾) has deep roots in the culinary history of Macau, reflecting the influences of both Chinese and Portuguese cultures. The process of making jerky involves marinating meat in a blend of spices and then air-drying it. It is originally a method for preserving meat. Meat jerky starts to become a popular Macanese snack with various flavors, including beef, chicken, and pork, which are all exceptionally juicy.</p>
             
             <img src="https://imgur.com/xawvJBm.jpg" alt="Meat Jerky Market" width="600" height="600">
             
-            <p>Meat jerky starts to become a popular Macanese snack with various flavors, including beef, chicken, and pork, which are all exceptionally juicy. Over time, meat jerky has become an iconic signature snack in local markets and widely cherished among both residents and tourists. It highlighted Macau's diverse culinary heritage, blending tradition with modern tastes.</p>
-        </div>
-
-        <!-- Almond Cookies Section -->
-        <div class="snack-section">
-            <h3>Almond Cookies (杏仁餅)</h3>
-            <img src="https://imgur.com/fZq1Wam.jpg" alt="Almond Cookies" width="600" height="600">
-            <p>Almond cookies (杏仁餅) are Macau's famous traditional biscuits, requiring particular attention to ingredients and baking techniques. The cookies are made with simple ingredients like crunchy almond bits, flour, sugar, and butter, giving a crumbly and crispy texture.</p>
+            <p>Over time, meat jerky has become an iconic signature snack in local markets and widely cherished among both residents and tourists. It highlighted Macau's diverse culinary heritage, blending tradition with modern tastes.</p>
             
-            <img src="https://imgur.com/lZJ4umB.jpg" alt="Almond Cookies Making" width="600" height="600">
+            <img src="https://imgur.com/fZq1Wam.jpg" alt="Almond Cookies" width="600" height="600">
+            
+            <p>Almond cookies (杏仁餅) are Macau's famous traditional biscuits, requiring particular attention to ingredients and baking techniques. The cookies are made with simple ingredients like crunchy almond bits, flour, sugar, and butter, giving a crumbly and crispy texture.</p>
             
             <p>Macau almond cookies have a rich history that reflects the region's unique blend of Chinese and Portuguese influences. These delightful treats are believed to have originated from the early Portuguese settlers, who brought their baking traditions to Macau.</p>
             
-            <p>Eventually, almond cookies emerged as a popular snack for locals and a treasured souvenir for tourists. The cookies are not only a testament to Macau's baking heritage but also symbolize the fusion of cultures, showcasing how traditional recipes can evolve and adapt over generations.</p>
-        </div>
-
-        <div class="content-section">
-            <div class="highlight">
-                <p><strong>Cultural Legacy:</strong> Today, almond cookies hold a prominent place in Macanese cuisine, embodying the city's rich cultural tapestry and serving as a delicious reminder of its culinary history.</p>
-            </div>
+            <img src="https://imgur.com/lZJ4umB.jpg" alt="Almond Cookies Making" width="600" height="600">
+            
+            <p>Eventually, almond cookies emerged as a popular snack for locals and a treasured souvenir for tourists. The cookies are not only a testament to Macau's baking heritage but also symbolize the fusion of cultures, showcasing how traditional recipes can evolve and adapt over generations. Today, almond cookies hold a prominent place in Macanese cuisine, embodying the city's rich cultural tapestry and serving as a delicious reminder of its culinary history.</p>
         </div>
         
         <div class="navigation">
