@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhongshan 中山 - Greater Bay Area</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .city-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #e67e22;
+        }
+        
+        .city-header h1 {
+            font-size: 2.8em;
+            color: #003366;
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+        }
+        
+        .content-section img {
+            width: 60%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 25px auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+        }
+        
+        .content-section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .question-box {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 35px 0;
+            border-left: 6px solid #2196f3;
+        }
+        
+        .question-box p {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .choice {
+            display: block;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border: 2px solid #e67e22;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        
+        .choice:hover {
+            background: #e67e22;
+            color: white;
+            transform: translateX(10px);
+        }
+        
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e67e22;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 0 15px;
+            background: #003366;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .btn:hover {
+            background: #e67e22;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .city-header h1 {
+                font-size: 2.2em;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px 0;
+            }
+            
+            .content-section img {
+                width: 95%;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="city-header">
+            <h1>Zhongshan 中山</h1>
+        </div>
+        
+        <div class="content-section">
+            <img src="https://imgur.com/mBySyua.jpg" alt="Zhongshan City">
+            
+            <p>Zhongshan is located on the west bank of the Pearl River Estuary, with a superior geographical location. It is an important node in the central and southern Pearl River Delta. It plays an important role as a transportation hub and manufacturing base in the Guangdong-Hong Kong-Macao Greater Bay Area (GBA).</p>
+            
+            <img src="https://imgur.com/ZFJbxZI.jpg" alt="Zhongshan Landscape">
+            
+            <p>Zhongshan City is the only city in China named after a modern leader, highlighting Sun Yat-sen's (孫中山) significance to the region. As his birthplace, the city features numerous landmarks that celebrate his legacy.</p>
+            
+            <div class="question-box">
+                <p>If you are the K2 class teacher and would like to teach your K2 students about Chinese cultural heritage, where will you go in Zhongshan?</p>
+                
+                <a href="sun-yat-sen-memorial.html" class="choice">A. Sun Yat-sen's Former Residence Memorial Museum (孫中山故居紀念館)</a>
+                <a href="xiaolan-shuangmei-mansion.html" class="choice">B. Xiaolan Shuangmei Mansion (小欖雙美府)</a>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="index.html" class="btn">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
