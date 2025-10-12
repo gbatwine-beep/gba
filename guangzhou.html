@@ -49,21 +49,13 @@
         }
         
         .content-section img {
-            width: 60%;
-            height: 400px;
-            object-fit: cover;
+            max-width: 60%;
+            height: auto;
             border-radius: 12px;
             margin: 25px auto;
             display: block;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 3px solid #e67e22;
-        }
-        
-        /* 为第一张图片设置不裁剪的样式 */
-        .content-section img[src="https://imgur.com/vwaaQOa.jpg"] {
-            object-fit: contain;
-            height: auto;
-            max-height: 400px;
         }
         
         .content-section p {
@@ -150,13 +142,7 @@
             }
             
             .content-section img {
-                width: 95%;
-                height: 300px;
-            }
-            
-            .content-section img[src="https://imgur.com/vwaaQOa.jpg"] {
-                width: 95%;
-                max-height: 300px;
+                max-width: 95%;
             }
         }
     </style>
@@ -168,15 +154,15 @@
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/vwaaQOa.jpg" alt="Guangzhou">
+            <img src="https://imgur.com/vwaaQOa.jpg" alt="Guangzhou" width="600" height="700">
             
             <p>Guangzhou is one of China's first-tier cities. Its GDP exceeded $2.8 trillion RMB in 2022, ranking 2nd among the 11 cities in the Greater Bay Area (right behind Shenzhen).</p>
             
-            <img src="https://imgur.com/zd9bUoA.jpg" alt="Guangzhou Metro">
+            <img src="https://imgur.com/PgnC9ki.jpg" alt="Guangzhou Metro" width="600" height="600">
             
             <p>The transport system is very well-developed in Guangzhou. The first metro line in Guangzhou was built in 1997. Currently, the metro system in Guangzhou operates 18 lines. The total operating mileage of its metro reaches 621 km, ranking 1st in the Greater Bay Area.</p>
             
-            <img src="https://imgur.com/6yc0wKk.jpg" alt="Guangzhou Transportation">
+            <img src="https://imgur.com/6yc0wKk.jpg" alt="Guangzhou Transportation" width="600" height="600">
             
             <div class="question-box">
                 <p>You are the head teacher at kindergarten. If you are planning to conduct a parent-child excursion in Guangzhou, what kind of transportation will you consider for navigating the city?</p>
