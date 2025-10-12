@@ -59,6 +59,13 @@
             border: 3px solid #e67e22;
         }
         
+        /* 为第一张图片设置不裁剪的样式 */
+        .content-section img[src="https://imgur.com/HtxGfqF.jpg"] {
+            object-fit: contain;
+            height: auto;
+            max-height: 400px;
+        }
+        
         .content-section p {
             font-size: 1.1em;
             margin-bottom: 20px;
@@ -108,6 +115,11 @@
             .content-section img {
                 width: 95%;
                 height: 300px;
+            }
+            
+            .content-section img[src="https://imgur.com/HtxGfqF.jpg"] {
+                width: 95%;
+                max-height: 300px;
             }
         }
     </style>
