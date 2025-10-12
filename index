@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greater Bay Area Interactive Learning</title>
+    <style>
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #003366 0%, #004080 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .map-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .map-section img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e67e22;
+        }
+        
+        .cities-section {
+            margin-top: 30px;
+        }
+        
+        .section-title {
+            color: #003366;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e67e22;
+            display: inline-block;
+        }
+        
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .city-card {
+            background: #f0f4f8;
+            color: #003366;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        
+        .city-card:hover {
+            background: #e67e22;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+            border-color: #d35400;
+        }
+        
+        .instruction {
+            text-align: center;
+            color: #666;
+            margin: 20px 0;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+        
+        .footer {
+            background: #003366;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        /* 新增：城市内容区域样式 */
+        .city-content-area {
+            display: none;
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        
+        .city-header {
+            color: #003366;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 10px;
+        }
+        
+        .city-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .city-text {
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+        
+        .question-box {
+            background: #e8f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .question-text {
+            color: #0066cc;
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .option-button {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            margin: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        
+        .option-button:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+        }
+        
+        .back-button {
+            background: #003366;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #004080;
+            transform: translateY(-2px);
+        }
+        
+        .options-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .cities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .options-container {
+                flex-direction: column;
+            }
+            
+            .option-button {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Greater Bay Area Interactive Learning</h1>
+            <p>Exploring the 9+2 Cities through Innovative Scenario-based Teaching</p>
+        </div>
+        
+        <div class="content">
+            <div class="map-section">
+                <img src="https://i.imgur.com/TEzzqdc.jpg" alt="Greater Bay Area Map">
+            </div>
+            
+            <p class="instruction">Click on any city below to begin your interactive exploration journey</p>
+            
+            <div class="cities-section">
+                <h2 class="section-title">Explore GBA Cities</h2>
+                
+                <div class="cities-grid">
+                    <div class="city-card" data-city="hongkong">Hong Kong 香港</div>
+                    <div class="city-card" data-city="macao">Macao 澳門</div>
+                    <div class="city-card" data-city="guangzhou">Guangzhou 廣州</div>
+                    <div class="city-card" data-city="shenzhen">Shenzhen 深圳</div>
+                    <div class="city-card" data-city="zhuhai">Zhuhai 珠海</div>
+                    <div class="city-card" data-city="foshan">Foshan 佛山</div>
+                    <div class="city-card" data-city="dongguan">Dongguan 東莞</div>
+                    <div class="city-card" data-city="huizhou">Huizhou 惠州</div>
+                    <div class="city-card" data-city="zhongshan">Zhongshan 中山</div>
+                    <div class="city-card" data-city="jiangmen">Jiangmen 江門</div>
+                    <div class="city-card" data-city="zhaoqing">Zhaoqing 肇慶</div>
+                </div>
+            </div>
+            
+            <!-- 城市内容区域 -->
+            <div id="city-content-area" class="city-content-area">
+                <button class="back-button" onclick="showCities()">← Back to Cities</button>
+                <div id="city-content">
+                    <!-- 城市内容将通过 JavaScript 动态加载 -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Greater Bay Area Education Research Project</p>
+        </div>
+    </div>
+
+    <script>
+        // 城市数据 - 包含所有城市的内容
+        const cityData = {
+            hongkong: {
+                title: "Hong Kong 香港",
+                content: `
+                    <h2 class="city-header">Hong Kong 香港</h2>
+                    <img src="https://imgur.com/Sa23y6X.jpg" class="city-image">
+                    <div class="city-text">
+                        <p>Hong Kong, a cosmopolitan metropolis nestled along the southern coast of China, is renowned for its unique blend of Eastern and Western cultures. As the world's third-largest financial center and a vital international trading port, Hong Kong leverages the dual advantages of the "One Country, Two Systems" principle to play a pivotal role in the development of the Greater Bay Area (GBA). It actively promotes and supports regional economic growth, enhances the GBA's function in national development, and facilitates the expansion of Hong Kong's competitive industries within the region—leveraging its strengths to serve the nation's needs.</p>
+                    </div>
+                    <img src="https://imgur.com/60DN9Ec.jpg" class="city-image">
+                    <div class="city-text">
+                        <p>Hong Kong boasts many iconic landmarks. Its dazzling nightscape is world-famous, earning recognition as one of the "World's Three Great Night Views" by Japan's Night View Tourism Convention Bureau.</p>
+                    </div>
+                    <div class="question-box">
+                        <p class="question-text">If you are the K3 class teacher and would like to teach your K3 students about Hong Kong's iconic landmarks, where will you go in Hong Kong?</p>
+                        <div class="options-container">
+                            <button class="option-button" onclick="selectOption('A. Victoria Harbour (維多利亞港)')">A. Victoria Harbour (維多利亞港)</button>
+                            <button class="option-button" onclick="selectOption('B. Victoria Peak (太平山)')">B. Victoria Peak (太平山)</button>
+                        </div>
+                    </div>
+                `
+            },
+            macao: {
+                title: "Macao 澳門",
+                content: `
+                    <h2 class="city-header">Macao 澳門</h2>
+                    <div class="city-text">
+                        <p>Macao, officially the Macao Special Administrative Region of the People's Republic of China, is a vibrant city known for its unique blend of Portuguese and Chinese cultures. As a special administrative region, Macao enjoys a high degree of autonomy and maintains its own legal and economic systems.</p>
+                        <p>Renowned as the "Las Vegas of Asia," Macao is a major global tourism and gaming destination. Beyond its famous casinos, Macao offers rich cultural heritage, including UNESCO World Heritage sites, delicious fusion cuisine, and colorful festivals that reflect its diverse history.</p>
+                    </div>
+                    <div class="question-box">
+                        <p class="question-text">What aspect of Macao's unique cultural heritage would you emphasize when teaching students about this special administrative region?</p>
+                        <div class="options-container">
+                            <button class="option-button" onclick="selectOption('A. Historic Centre of Macao (UNESCO site)')">A. Historic Centre of Macao (UNESCO site)</button>
+                            <button class="option-button" onclick="selectOption('B. Macanese cuisine and food culture')">B. Macanese cuisine and food culture</button>
+                        </div>
+                    </div>
+                `
+            },
+            guangzhou: {
+                title: "Guangzhou 廣州",
+                content: `
+                    <h2 class="city-header">Guangzhou 廣州</h2>
+                    <div class="city-text">
+                        <p>Guangzhou, the capital of Guangdong province, is a bustling metropolis with over 2,000 years of history. Known as the "Southern Gateway" to China, it has long been an important trading port and cultural hub.</p>
+                        <p>As a key city in the Greater Bay Area, Guangzhou serves as the region's political, economic, and cultural center. It's famous for its Cantonese cuisine, vibrant wholesale markets, and mix of modern skyscrapers alongside historic sites like the Chen Clan Ancestral Hall and Temple of the Six Banyan Trees.</p>
+                    </div>
+                    <div class="question-box">
+                        <p class="question-text">Which aspect of Guangzhou's long history and modern development would you focus on when introducing this city to students?</p>
+                        <div class="options-container">
+                            <button class="option-button" onclick="selectOption('A. Guangzhou as a historic trading port')">A. Guangzhou as a historic trading port</button>
+                            <button class="option-button" onclick="selectOption('B. Modern development and economic significance')">B. Modern development and economic significance</button>
+                        </div>
+                    </div>
+                `
+            },
+            // 为其他城市添加类似的内容...
+            shenzhen: {
+                title: "Shenzhen 深圳",
+                content: `
+                    <h2 class="city-header">Shenzhen 深圳</h2>
+                    <div class="city-text">
+                        <p>Shenzhen is a modern megacity known as China's Silicon Valley and a global technology hub. From a small fishing village to a bustling metropolis of over 12 million people, Shenzhen represents China's rapid economic development and innovation.</p>
+                        <p>As one of China's first Special Economic Zones, Shenzhen has become a center for technology, manufacturing, and creative industries. It's home to numerous tech giants and startups, and serves as a model for urban planning and sustainable development.</p>
+                    </div>
+                    <div class="question-box">
+                        <p class="question-text">What aspect of Shenzhen's remarkable transformation would you highlight to demonstrate China's modernization?</p>
+                        <div class="options-container">
+                            <button class="option-button" onclick="selectOption('A. Technology and innovation ecosystem')">A. Technology and innovation ecosystem</button>
+                            <button class="option-button" onclick="selectOption('B. Urban planning and sustainable development')">B. Urban planning and sustainable development</button>
+                        </div>
+                    </div>
+                `
+            },
+            zhuhai: {
+                title: "Zhuhai 珠海",
+                content: `
+                    <h2 class="city-header">Zhuhai 珠海</h2>
+                    <div class="city-text">
+                        <p>Zhuhai is a coastal city known for its beautiful scenery, clean environment, and high quality of life. Located on the Pearl River Delta, it borders Macao to the south and faces Shenzhen across the estuary.</p>
+                        <p>Recognized as one of China's most livable cities, Zhuhai boasts numerous parks, gardens, and a picturesque coastline. It's also an important industrial and technological hub, with strengths in printing, electronics, and biotechnology.</p>
+                    </div>
+                    <div class="question-box">
+                        <p class="question-text">Which feature of Zhuhai would you emphasize to showcase its unique character within the Greater Bay Area?</p>
+                        <div class="options-container">
+                            <button class="option-button" onclick="selectOption('A. Environmental quality and livability')">A. Environmental quality and livability</button>
+                            <button class="option-button" onclick="selectOption('B. Strategic location and economic role')">B. Strategic location and economic role</button>
+                        </div>
+                    </div>
+                `
+            }
+            // 您可以继续为其他城市添加内容...
+        };
+
+        // 显示城市内容
+        function showCity(cityId) {
+            document.querySelector('.cities-section').style.display = 'none';
+            document.getElementById('city-content-area').style.display = 'block';
+            
+            const city = cityData[cityId];
+            document.getElementById('city-content').innerHTML = city.content;
+            
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        }
+
+        // 返回城市列表
+        function showCities() {
+            document.getElementById('city-content-area').style.display = 'none';
+            document.querySelector('.cities-section').style.display = 'block';
+            
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        }
+
+        // 处理选项选择
+        function selectOption(option) {
+            alert(`You selected: ${option}`);
+            // 这里可以添加更多交互逻辑，比如显示更多内容或跳转到其他部分
+        }
+
+        // 绑定点击事件到城市卡片
+        document.querySelectorAll('.city-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const cityId = this.getAttribute('data-city');
+                showCity(cityId);
+            });
+        });
+    </script>
+</body>
+</html>
