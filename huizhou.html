@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huizhou 惠州 - Greater Bay Area</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .city-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #e67e22;
+        }
+        
+        .city-header h1 {
+            font-size: 2.8em;
+            color: #003366;
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+        }
+        
+        .content-section img {
+            width: 60%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 25px auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid #e67e22;
+        }
+        
+        .content-section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .question-box {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 35px 0;
+            border-left: 6px solid #2196f3;
+        }
+        
+        .question-box p {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .choice {
+            display: block;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border: 2px solid #e67e22;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        
+        .choice:hover {
+            background: #e67e22;
+            color: white;
+            transform: translateX(10px);
+        }
+        
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e67e22;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 0 15px;
+            background: #003366;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .btn:hover {
+            background: #e67e22;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .city-header h1 {
+                font-size: 2.2em;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px 0;
+            }
+            
+            .content-section img {
+                width: 95%;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="city-header">
+            <h1>Huizhou 惠州</h1>
+        </div>
+        
+        <div class="content-section">
+            <img src="https://imgur.com/8UWbf4E.jpg" alt="Huizhou City">
+            
+            <p>Huizhou is situated in the east coast of the Guangdong-Hong Kong-Macao Greater Bay Area (GBA). It is known as the "Famous County in Lingnan" (「嶺南名郡」) and has the second largest area among the Mainland cities in the Greater Bay Area. With the rich tourism resources and a beautiful ecological environment, Huizhou was rated as one of the first national ecological civilization demonstration cities (首批國家生態文明建設示範市).</p>
+            
+            <img src="https://imgur.com/XA3nHa1.jpg" alt="Huizhou Hakka Culture">
+            
+            <p>Huizhou has a resident population of approximately 6.066 million, making it the sixth largest city in the Greater Bay Area, just behind Hong Kong. Additionally, Huizhou is renowned as a significant Hakka (客家) emigrant hometown in Guangdong Province and stands as one of the most important settlements for the Hakka people.</p>
+            
+            <img src="https://imgur.com/gEkXLE4.jpg" alt="Huizhou Scenery">
+            
+            <div class="question-box">
+                <p>If you are the K2 class teacher and would like to teach your K2 students about China's natural scenery, where will you go in Huizhou?</p>
+                
+                <a href="double-moon-bay.html" class="choice">A. Double-Moon Bay (雙月灣)</a>
+                <a href="luofu-mountain.html" class="choice">B. Luofu Mountain Scenic Area (羅浮山景區)</a>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="index.html" class="btn">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
