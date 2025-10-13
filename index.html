@@ -178,7 +178,6 @@
             font-weight: bold;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             font-size: 0.95em;
-            cursor: pointer;
         }
         
         .city-card:hover {
@@ -206,114 +205,6 @@
             font-size: 0.9em;
         }
         
-        /* 学习进度样式 */
-        .learning-progress {
-            background: #f8f9fa;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .progress-bar-container {
-            margin-bottom: 10px;
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #e67e22, #d35400);
-            transition: width 0.5s ease;
-            width: 0%;
-        }
-        
-        .progress-stats {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9em;
-            color: #666;
-        }
-        
-        .achievements-container {
-            margin: 20px 0;
-            padding: 15px;
-            background: #fff8e6;
-            border-radius: 8px;
-            border-left: 4px solid #ffc107;
-        }
-        
-        .achievements-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #003366;
-        }
-        
-        .achievements-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .achievement-badge {
-            background: #e67e22;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .achievement-badge.locked {
-            background: #ccc;
-            color: #666;
-        }
-        
-        .share-section {
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .share-button {
-            background: #003366;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .share-button:hover {
-            background: #004080;
-            transform: translateY(-2px);
-        }
-        
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #4caf50;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 5px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            display: none;
-        }
-        
         @media (max-width: 768px) {
             .cities-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -325,7 +216,6 @@
             
             .content {
                 padding: 20px;
-                text-align: left; /* 移动端左对齐 */
             }
             
             .carousel {
@@ -335,25 +225,6 @@
             
             .carousel-inner {
                 height: 300px;
-            }
-            
-            .section-title {
-                text-align: left; /* 移动端左对齐 */
-                display: block;
-                width: 100%;
-            }
-            
-            .instruction {
-                text-align: left; /* 移动端左对齐 */
-            }
-            
-            .progress-stats {
-                flex-direction: column;
-                gap: 5px;
-            }
-            
-            .achievements-list {
-                justify-content: flex-start;
             }
         }
         
@@ -381,10 +252,6 @@
             .carousel-inner {
                 height: 250px;
             }
-            
-            .learning-progress, .achievements-container {
-                padding: 12px;
-            }
         }
 
         /* 笔记本电脑优化 */
@@ -410,6 +277,70 @@
             <h1>Greater Bay Area Interactive Learning</h1>
             <p>Exploring the 9+2 Cities through Innovative Scenario-based Teaching</p>
         </div>
+        <!-- 在现有header下方添加进度条 -->
+<div class="progress-header">
+    <div class="progress-bar">
+        <div class="progress-fill" style="width: 0%"></div>
+    </div>
+    <div class="progress-text">已探索: <span id="progress-count">0</span>/11 个城市</div>
+</div>
+
+<style>
+.progress-header {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e67e22, #d35400);
+    transition: width 0.5s ease;
+}
+</style>
+
+<script>
+// 进度跟踪
+const progress = {
+    visitedCities: new Set(),
+    
+    markVisited: function(cityId) {
+        this.visitedCities.add(cityId);
+        this.updateProgress();
+    },
+    
+    updateProgress: function() {
+        const count = this.visitedCities.size;
+        const percentage = (count / 11) * 100;
+        
+        document.querySelector('.progress-fill').style.width = percentage + '%';
+        document.getElementById('progress-count').textContent = count;
+        
+        // 保存到本地存储
+        localStorage.setItem('visitedCities', JSON.stringify([...this.visitedCities]));
+    },
+    
+    loadProgress: function() {
+        const saved = localStorage.getItem('visitedCities');
+        if (saved) {
+            this.visitedCities = new Set(JSON.parse(saved));
+            this.updateProgress();
+        }
+    }
+};
+
+// 在显示城市内容时调用
+function showCity(cityId) {
+    progress.markVisited(cityId);
+    // ... 原有代码
+}
+</script>
         
         <div class="content">
             <!-- 轮播图部分 -->
@@ -448,46 +379,18 @@
             <div class="cities-section">
                 <h2 class="section-title">Explore GBA Cities</h2>
                 
-                <!-- 学习进度可视化 -->
-                <div class="learning-progress">
-                    <div class="progress-bar-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progress-fill"></div>
-                        </div>
-                    </div>
-                    <div class="progress-stats">
-                        <span>Explored: <span id="progress-count">0</span>/11 cities</span>
-                        <span>Learning Time: <span id="learning-time">0</span> min</span>
-                    </div>
-                </div>
-                
-                <!-- 成就系统 -->
-                <div class="achievements-container">
-                    <div class="achievements-title">Your Achievements</div>
-                    <div class="achievements-list" id="achievements-list">
-                        <!-- 成就会通过JavaScript动态添加 -->
-                    </div>
-                </div>
-                
                 <div class="cities-grid">
-                    <div class="city-card" data-city="hongkong">Hong Kong 香港</div>
-                    <div class="city-card" data-city="macao">Macao 澳門</div>
-                    <div class="city-card" data-city="guangzhou">Guangzhou 廣州</div>
-                    <div class="city-card" data-city="shenzhen">Shenzhen 深圳</div>
-                    <div class="city-card" data-city="zhuhai">Zhuhai 珠海</div>
-                    <div class="city-card" data-city="foshan">Foshan 佛山</div>
-                    <div class="city-card" data-city="dongguan">Dongguan 東莞</div>
-                    <div class="city-card" data-city="huizhou">Huizhou 惠州</div>
-                    <div class="city-card" data-city="zhongshan">Zhongshan 中山</div>
-                    <div class="city-card" data-city="jiangmen">Jiangmen 江門</div>
-                    <div class="city-card" data-city="zhaoqing">Zhaoqing 肇慶</div>
-                </div>
-                
-                <!-- 分享功能 -->
-                <div class="share-section">
-                    <button class="share-button" onclick="shareProgress()">
-                        📤 Share My Progress
-                    </button>
+                    <a href="hongkong.html" class="city-card">Hong Kong 香港</a>
+                    <a href="macau.html" class="city-card">Macau 澳門</a>
+                    <a href="guangzhou.html" class="city-card">Guangzhou 廣州</a>
+                    <a href="shenzhen.html" class="city-card">Shenzhen 深圳</a>
+                    <a href="zhuhai.html" class="city-card">Zhuhai 珠海</a>
+                    <a href="foshan.html" class="city-card">Foshan 佛山</a>
+                    <a href="dongguan.html" class="city-card">Dongguan 東莞</a>
+                    <a href="huizhou.html" class="city-card">Huizhou 惠州</a>
+                    <a href="zhongshan.html" class="city-card">Zhongshan 中山</a>
+                    <a href="jiangmen.html" class="city-card">Jiangmen 江門</a>
+                    <a href="zhaoqing.html" class="city-card">Zhaoqing 肇慶</a>
                 </div>
             </div>
         </div>
@@ -497,11 +400,7 @@
         </div>
     </div>
 
-    <!-- 通知 -->
-    <div class="notification" id="notification"></div>
-
     <script>
-        // 轮播图功能
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-item');
         const indicators = document.querySelectorAll('.carousel-indicator');
@@ -590,217 +489,6 @@
                 }
             }
         }
-
-        // 学习进度功能
-        const learningProgress = {
-            visitedCities: new Set(),
-            startTime: new Date(),
-            totalLearningTime: 0,
-            
-            init: function() {
-                this.loadProgress();
-                this.updateProgressDisplay();
-                this.updateTimeDisplay();
-                this.updateAchievements();
-                
-                // 每分钟更新一次学习时间
-                setInterval(() => {
-                    this.updateTimeDisplay();
-                }, 60000);
-            },
-            
-            markVisited: function(cityId) {
-                this.visitedCities.add(cityId);
-                this.updateProgress();
-                this.checkAchievements();
-            },
-            
-            updateProgress: function() {
-                const count = this.visitedCities.size;
-                const percentage = (count / 11) * 100;
-                
-                document.getElementById('progress-fill').style.width = percentage + '%';
-                document.getElementById('progress-count').textContent = count;
-                
-                // 保存到本地存储
-                localStorage.setItem('visitedCities', JSON.stringify([...this.visitedCities]));
-                localStorage.setItem('learningStartTime', this.startTime.toISOString());
-            },
-            
-            loadProgress: function() {
-                // 加载访问过的城市
-                const savedCities = localStorage.getItem('visitedCities');
-                if (savedCities) {
-                    this.visitedCities = new Set(JSON.parse(savedCities));
-                }
-                
-                // 加载学习时间
-                const savedStartTime = localStorage.getItem('learningStartTime');
-                if (savedStartTime) {
-                    this.startTime = new Date(savedStartTime);
-                }
-                
-                // 计算总学习时间
-                this.calculateTotalLearningTime();
-            },
-            
-            calculateTotalLearningTime: function() {
-                const now = new Date();
-                const diffMs = now - this.startTime;
-                this.totalLearningTime = Math.floor(diffMs / 60000); // 转换为分钟
-            },
-            
-            updateTimeDisplay: function() {
-                this.calculateTotalLearningTime();
-                document.getElementById('learning-time').textContent = this.totalLearningTime;
-            },
-            
-            updateProgressDisplay: function() {
-                const count = this.visitedCities.size;
-                const percentage = (count / 11) * 100;
-                
-                document.getElementById('progress-fill').style.width = percentage + '%';
-                document.getElementById('progress-count').textContent = count;
-            }
-        };
-
-        // 成就系统
-        const achievements = {
-            badges: [
-                { id: 'first_city', name: 'Explorer', description: 'Visit your first city', earned: false },
-                { id: 'half_cities', name: 'GBA Scholar', description: 'Visit 6 cities', earned: false },
-                { id: 'all_cities', name: 'GBA Expert', description: 'Visit all 11 cities', earned: false },
-                { id: 'quick_learner', name: 'Quick Learner', description: 'Learn for 30 minutes', earned: false },
-                { id: 'dedicated', name: 'Dedicated Learner', description: 'Learn for 2 hours', earned: false }
-            ],
-            
-            checkAchievements: function() {
-                const visitedCount = learningProgress.visitedCities.size;
-                const learningTime = learningProgress.totalLearningTime;
-                
-                // 检查城市相关成就
-                if (visitedCount >= 1) {
-                    this.unlockAchievement('first_city');
-                }
-                if (visitedCount >= 6) {
-                    this.unlockAchievement('half_cities');
-                }
-                if (visitedCount >= 11) {
-                    this.unlockAchievement('all_cities');
-                }
-                
-                // 检查时间相关成就
-                if (learningTime >= 30) {
-                    this.unlockAchievement('quick_learner');
-                }
-                if (learningTime >= 120) {
-                    this.unlockAchievement('dedicated');
-                }
-            },
-            
-            unlockAchievement: function(achievementId) {
-                const achievement = this.badges.find(badge => badge.id === achievementId);
-                if (achievement && !achievement.earned) {
-                    achievement.earned = true;
-                    this.showAchievementNotification(achievement.name);
-                    this.updateAchievementsDisplay();
-                    
-                    // 保存到本地存储
-                    localStorage.setItem('achievements', JSON.stringify(this.badges));
-                }
-            },
-            
-            showAchievementNotification: function(achievementName) {
-                const notification = document.getElementById('notification');
-                notification.textContent = `🏆 Achievement Unlocked: ${achievementName}`;
-                notification.style.display = 'block';
-                
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 3000);
-            },
-            
-            updateAchievementsDisplay: function() {
-                const achievementsList = document.getElementById('achievements-list');
-                achievementsList.innerHTML = '';
-                
-                this.badges.forEach(badge => {
-                    const badgeElement = document.createElement('div');
-                    badgeElement.className = `achievement-badge ${badge.earned ? '' : 'locked'}`;
-                    badgeElement.innerHTML = badge.earned ? 
-                        `🏆 ${badge.name}` : 
-                        `🔒 ${badge.name}`;
-                    
-                    // 添加提示
-                    badgeElement.title = badge.description;
-                    
-                    achievementsList.appendChild(badgeElement);
-                });
-            },
-            
-            loadAchievements: function() {
-                const savedAchievements = localStorage.getItem('achievements');
-                if (savedAchievements) {
-                    this.badges = JSON.parse(savedAchievements);
-                }
-                this.updateAchievementsDisplay();
-            }
-        };
-
-        // 分享功能
-        function shareProgress() {
-            const visitedCount = learningProgress.visitedCities.size;
-            const learningTime = learningProgress.totalLearningTime;
-            const achievementCount = achievements.badges.filter(badge => badge.earned).length;
-            
-            const shareText = `I've explored ${visitedCount}/11 Greater Bay Area cities and spent ${learningTime} minutes learning! I've earned ${achievementCount} achievements. Join me in discovering the GBA!`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'My GBA Learning Progress',
-                    text: shareText,
-                    url: window.location.href
-                });
-            } else {
-                // 降级方案 - 复制到剪贴板
-                navigator.clipboard.writeText(shareText).then(() => {
-                    alert('Progress copied to clipboard! You can now share it with others.');
-                }).catch(() => {
-                    // 如果剪贴板API不可用，显示文本
-                    alert(shareText + '\n\nCopy this text to share your progress.');
-                });
-            }
-        }
-
-        // 初始化函数
-        function init() {
-            // 初始化学习进度
-            learningProgress.init();
-            
-            // 初始化成就系统
-            achievements.loadAchievements();
-            achievements.checkAchievements();
-            
-            // 绑定城市卡片点击事件
-            document.querySelectorAll('.city-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const cityId = this.getAttribute('data-city');
-                    learningProgress.markVisited(cityId);
-                    achievements.checkAchievements();
-                    
-                    // 这里可以添加跳转到城市页面的逻辑
-                    // window.location.href = `${cityId}.html`;
-                });
-            });
-            
-            // 每分钟检查一次成就
-            setInterval(() => {
-                achievements.checkAchievements();
-            }, 60000);
-        }
-
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
