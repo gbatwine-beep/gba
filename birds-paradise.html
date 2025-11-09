@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,21 +48,61 @@
             margin-bottom: 40px;
         }
         
-        .content-section img {
-            width: 60%;
-            height: 400px;
+        /* 文字与图片环绕布局 */
+        .text-with-image {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            margin: 20px 0;
+            min-height: 300px;
+        }
+        
+        .text-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-with-image .image-side {
+            flex: 0 0 45%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .text-with-image .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .image-container {
+            width: 100%;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #e67e22;
+        }
+        
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
+            object-position: center 30%;
         }
         
         .content-section p {
-            font-size: 1.1em;
+            font-size: 1.3em;
             margin-bottom: 20px;
             text-align: justify;
+        }
+        
+        .keyword {
+            font-weight: bold;
+            color: #003366;
         }
         
         .navigation {
@@ -82,7 +122,7 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.3em;
         }
         
         .btn:hover {
@@ -105,9 +145,28 @@
                 margin: 10px 0;
             }
             
-            .content-section img {
-                width: 95%;
-                height: 300px;
+            .text-with-image {
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto;
+            }
+            
+            .text-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .text-with-image .image-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px;
+            }
+            
+            .text-with-image .text-side {
+                justify-content: flex-start;
+            }
+            
+            .content-section p {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -115,25 +174,46 @@
 <body>
     <div class="container">
         <div class="city-header">
-            <h1>Birds' Paradise （小鳥天堂）</h1>
+            <h1>Birds' Paradise <span class="keyword">（小鳥天堂）</span></h1>
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/PcH6yj2.jpg" alt="Birds' Paradise">
+            <!-- 第一段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>The <span class="keyword">Birds' Paradise (小鳥天堂)</span> was established in 1995. It has been developed as a renowned <span class="keyword">eco-tourism destination (生態旅遊目的地)</span> located in Jiangmen City, focusing on <span class="keyword">bird conservation (鳥類保護)</span> and providing a natural habitat for various bird species. The Birds' Paradise is also a memorial park dedicated to the esteemed Chinese writer <span class="keyword">Ba Jin (巴金)</span>, who drew inspiration from this breathtaking scenery filled with trees and countless birds for his famous Chinese literature - "Bird's Paradise".</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/PcH6yj2.jpg" alt="Birds' Paradise">
+                    </div>
+                </div>
+            </div>
             
-            <p>The Birds' Paradise was established in 1995. It has been developed as a renowned eco-tourism destination located in Jiangmen City, focusing on bird conservation and providing a natural habitat for various bird species. The Birds' Paradise is also a memorial park dedicated to the esteemed Chinese writer Ba Jin (巴金), who drew inspiration from this breathtaking scenery filled with trees and countless birds for his famous Chinese literature - "Bird's Paradise" (鳥的天堂).</p>
+            <!-- 第二段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>This scenic spot includes lush greenery, wetlands, and lakes, creating a picturesque setting for visitors. In 2021, Bird Paradise was successfully awarded the title of <span class="keyword">"National Wetland Park" (國家濕地公園)</span>. The paradise provides opportunities to see a variety of birds in their natural setting. This stunning scenery and diverse birdlife make it a popular spot for photographers.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/HAmzq0S.jpg" alt="Birds' Paradise Wetland">
+                    </div>
+                </div>
+            </div>
             
-            <img src="https://imgur.com/HAmzq0S.jpg" alt="Birds' Paradise Wetland">
-            
-            <p>This scenic spot includes lush greenery, wetlands, and lakes, creating a picturesque setting for visitors. In 2021, Bird Paradise was successfully awarded the title of "National Wetland Park"（國家濕地公園）.</p>
-            
-            <img src="https://imgur.com/tsF5vY6.jpg" alt="Birds in Paradise">
-            
-            <p>The paradise provides opportunities to see a variety of birds in their natural setting. This stunning scenery and diverse birdlife make it a popular spot for photographers. In addition, there are some well-maintained walking trails and observation points inside the paradise, allowing visitors to have a closer look of various kinds of birds. In March 2023, the Birds' Paradise Scenic Area was designated as a national AAAA-level tourist attraction (國家AAAA級旅遊景區) by the Department of Culture and Tourism of Guangdong Province(廣東省文化和旅遊廳).</p>
-            
-            <img src="https://imgur.com/LTV2Zq6.jpg" alt="Bird Conservation">
-            
-            <p>For educational purposes, the Birds' Paradise regularly offers educational activities to promote awareness about wildlife conservation and the importance of protecting natural habitats. Visitors can also enjoy the natural beauty and learn about Ba Jin's impact on Chinese literature, creating a unique blend of nature and culture.</p>
+            <!-- 第三段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>In addition, there are some well-maintained walking trails and observation points inside the paradise, allowing visitors to have a closer look of various kinds of birds. In March 2023, the Birds' Paradise Scenic Area was designated as a <span class="keyword">national AAAA-level tourist attraction (國家AAAA級旅遊景區)</span> by the <span class="keyword">Department of Culture and Tourism of Guangdong Province (廣東省文化和旅遊廳)</span>.</p>
+                    <p>For educational purposes, the Birds' Paradise regularly offers educational activities to promote awareness about <span class="keyword">wildlife conservation (野生動物保護)</span> and the importance of protecting natural habitats. Visitors can also enjoy the natural beauty and learn about Ba Jin's impact on Chinese literature, creating a unique blend of nature and culture.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/tsF5vY6.jpg" alt="Birds in Paradise">
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="navigation">
