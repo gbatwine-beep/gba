@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,67 +14,112 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: #333;
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 18px;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .location-header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 3px solid #e67e22;
         }
         
         .location-header h1 {
             font-size: 2.5em;
             color: #003366;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            text-decoration: underline;
         }
         
         .content-section {
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
         
-        .content-section img {
-            width: 60%;
-            height: 400px;
+        /* 文字与图片环绕布局 - 使用stretch使两侧等高 */
+        .text-with-image {
+            display: flex;
+            align-items: stretch; /* 改为stretch使两侧等高 */
+            gap: 20px;
+            margin: 20px 0;
+            min-height: 300px; /* 设置最小高度确保视觉平衡 */
+        }
+        
+        .text-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-with-image .image-side {
+            flex: 0 0 45%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .text-with-image .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 文字垂直居中 */
+        }
+        
+        /* 调整图片容器高度，使其与文字高度更匹配 */
+        .image-container {
+            width: 100%;
+            position: relative;
+            height: 100%; /* 改为100%高度填充容器 */
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #e67e22;
+        }
+        
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
+            object-position: center 30%; /* 调整图片显示位置，裁剪上下部分 */
         }
         
+        /* 字体大小 */
         .content-section p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
+            font-size: 1.15em;
+            margin-bottom: 15px;
             text-align: justify;
+        }
+        
+        /* 关键词样式 */
+        .keyword {
+            font-weight: bold;
+            color: #003366;
         }
         
         .navigation {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
+            margin-top: 30px;
+            padding-top: 20px;
             border-top: 2px solid #e67e22;
         }
         
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            margin: 0 15px;
+            padding: 12px 25px;
+            margin: 0 10px;
             background: #003366;
             color: white;
             text-decoration: none;
@@ -90,9 +135,14 @@
         }
         
         @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                padding: 10px;
+            }
+            
             .container {
-                padding: 20px;
-                margin: 10px;
+                padding: 15px;
+                margin: 5px;
             }
             
             .location-header h1 {
@@ -101,12 +151,27 @@
             
             .btn {
                 display: block;
-                margin: 10px 0;
+                margin: 8px 0;
             }
             
-            .content-section img {
-                width: 95%;
-                height: 300px;
+            .text-with-image {
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto; /* 移动端取消最小高度 */
+            }
+            
+            .text-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .text-with-image .image-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px; /* 移动端设置固定高度 */
+            }
+            
+            .text-with-image .text-side {
+                justify-content: flex-start; /* 移动端文字顶部对齐 */
             }
         }
     </style>
@@ -118,21 +183,53 @@
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/W8ZDR7F.jpg" alt="Shenzhen Science and Technology Museum">
+            <!-- 第一段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>The <span class="keyword">Shenzhen Science and Technology Museum (深圳科學技術館)</span> is designed around the theme <span class="keyword">"Digital Civilization, Innovative Future" (「數字文明、創新未來」)</span>. It aims to become the world's first digital civilization-themed science museum and a benchmark for science museums nationwide. From its futuristic architecture to its advanced exhibition technologies and interactive experiences, the museum stands as a leader in scientific innovation.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/W8ZDR7F.jpg" alt="Shenzhen Science and Technology Museum">
+                    </div>
+                </div>
+            </div>
             
-            <p>The Shenzhen Science and Technology Museum is designed around the theme "Digital Civilization, Innovative Future" (「數字文明、創新未來」). It aims to become the world's first digital civilization-themed science museum and a benchmark for science museums nationwide. From its futuristic architecture to its advanced exhibition technologies and interactive experiences, the museum stands as a leader in scientific innovation.</p>
+            <!-- 第二段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>The Shenzhen Science and Technology Museum hosts approximately 950 exhibits that cover a wide range of scientific disciplines and technological innovations. These exhibits highlight significant advancements in fields such as <span class="keyword">robotics (機器人技術)</span>, artificial intelligence, <span class="keyword">telecommunications (電信)</span>, and <span class="keyword">environmental technology (環境技術)</span>. Many of the displays focus on homegrown innovations, showcasing the achievements of Chinese scientists and engineers.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/sxEL8yP.jpg" alt="Museum Exhibits">
+                    </div>
+                </div>
+            </div>
             
-            <img src="https://imgur.com/sxEL8yP.jpg" alt="Museum Exhibits">
+            <!-- 第三段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>There is an <span class="keyword">AI-powered robotic restaurant (人工智能機器人餐廳)</span> that provides <span class="keyword">fully automated dining (全自動餐飲)</span> in the museum. Special sections are often dedicated to themes like <span class="keyword">smart cities (智慧城市)</span>, <span class="keyword">sustainable development (可持續發展)</span>, and the future of transportation, reflecting Shenzhen's status as a leading tech hub.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/AzidZPN.jpg" alt="AI Restaurant">
+                    </div>
+                </div>
+            </div>
             
-            <p>The Shenzhen Science and Technology Museum hosts approximately 950 exhibits that cover a wide range of scientific disciplines and technological innovations. These exhibits highlight significant advancements in fields such as robotics, artificial intelligence, telecommunications, and environmental technology. Many of the displays focus on homegrown innovations, showcasing the achievements of Chinese scientists and engineers.</p>
-            
-            <img src="https://imgur.com/AzidZPN.jpg" alt="AI Restaurant">
-            
-            <p>There is an AI-powered robotic restaurant that provides fully automated dining (全自動餐飲) in the museum. Special sections are often dedicated to themes like smart cities, sustainable development, and the future of transportation, reflecting Shenzhen's status as a leading tech hub.</p>
-            
-            <img src="https://imgur.com/qFYnPTd.jpg" alt="Interactive Installations">
-            
-            <p>Interactive installations in the museum allow visitors to engage with the technology, making complex concepts accessible and enjoyable. The museum not only aims to educate the public but also to inspire future generations of innovators and thinkers.</p>
+            <!-- 第四段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p><span class="keyword">Interactive installations (互動裝置)</span> in the museum allow visitors to engage with the technology, making complex concepts accessible and enjoyable. The museum not only aims to educate the public but also to inspire future generations of innovators and thinkers.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/qFYnPTd.jpg" alt="Interactive Installations">
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="navigation">
