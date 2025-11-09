@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,21 +48,61 @@
             margin-bottom: 40px;
         }
         
-        .content-section img {
-            width: 60%;
-            height: 400px;
+        /* 文字与图片环绕布局 */
+        .text-with-image {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            margin: 20px 0;
+            min-height: 300px;
+        }
+        
+        .text-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-with-image .image-side {
+            flex: 0 0 45%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .text-with-image .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .image-container {
+            width: 100%;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #e67e22;
+        }
+        
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
+            object-position: center 30%;
         }
         
         .content-section p {
-            font-size: 1.1em;
+            font-size: 1.3em;
             margin-bottom: 20px;
             text-align: justify;
+        }
+        
+        .keyword {
+            font-weight: bold;
+            color: #003366;
         }
         
         .navigation {
@@ -82,7 +122,7 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.3em;
         }
         
         .btn:hover {
@@ -105,9 +145,28 @@
                 margin: 10px 0;
             }
             
-            .content-section img {
-                width: 95%;
-                height: 300px;
+            .text-with-image {
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto;
+            }
+            
+            .text-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .text-with-image .image-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px;
+            }
+            
+            .text-with-image .text-side {
+                justify-content: flex-start;
+            }
+            
+            .content-section p {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -115,25 +174,47 @@
 <body>
     <div class="container">
         <div class="city-header">
-            <h1>Sun Yat-sen's Former Residence Memorial Museum (孫中山故居紀念館)</h1>
+            <h1>Sun Yat-sen's Former Residence Memorial Museum <span class="keyword">(孫中山故居紀念館)</span></h1>
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/8aKE8XP.jpg" alt="Sun Yat-sen's Former Residence">
+            <!-- 第一段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>The <span class="keyword">Sun Yat-sen's Former Residence Memorial Museum (孫中山故居紀念館)</span> was located in <span class="keyword">Cuihang Village (翠亨村)</span> in Zhongshan.</p>
+                    <p>Sun Yat-sen (1866 - 1925) is a highly significant figure in modern Chinese history. He is often honored as the <span class="keyword">"Father of the Nation" (國父)</span> and plays a crucial transitional role in modern Chinese history, connecting China's imperial past with its path toward modernization. He led the <span class="keyword">Xinhai Revolution (辛亥革命)</span>, which resulted in the overthrow of the <span class="keyword">Qing Dynasty (清朝)</span> and the establishment of the <span class="keyword">Republic of China (中華民國)</span>.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/8aKE8XP.jpg" alt="Sun Yat-sen's Former Residence">
+                    </div>
+                </div>
+            </div>
             
-            <p>The Sun Yat-sen's Former Residence Memorial Museum was located in Cuihang Village (翠亨村) in Zhongshan.</p>
+            <!-- 第二段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>Sun Yat-sen's Former Residence Memorial Museum is not only a <span class="keyword">National First-Class Museum (國家一級博物館)</span> and a <span class="keyword">5A-rated tourist attraction (國家5A級旅遊景區)</span>, but also the core scenic area of the <span class="keyword">Sun Yat-sen's Hometown Tourism Zone (孫中山故里旅遊區)</span>. It was an area that Sun Yat-sen spent his childhood here, where his revolutionary ideas first took shape. Visitors can explore the well-preserved interiors, including his study, kitchen, and courtyard well, which offer a glimpse into his daily life. The museum also exhibits artifacts and documents detailing his life and revolutionary journey.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/x9qmI0W.jpg" alt="Sun Yat-sen">
+                    </div>
+                </div>
+            </div>
             
-            <p>Sun Yat-sen (1866 - 1925) is a highly significant figure in modern Chinese history. He is often honored as the "Father of the Nation" (國父) and plays a crucial transitional role in modern Chinese history, connecting China's imperial past with its path toward modernization. He led the Xinhai Revolution, which resulted in the overthrow of the Qing Dynasty and the establishment of the Republic of China.</p>
-            
-            <img src="https://imgur.com/x9qmI0W.jpg" alt="Sun Yat-sen">
-            
-            <p>Sun Yat-sen's Former Residence Memorial Museum is not only a National First-Class Museum (國家一級博物館) and a 5A-rated tourist attraction (國家5A級旅遊景區), but also the core scenic area of the Sun Yat-sen's Hometown Tourism Zone (孫中山故里旅遊區). It was an area that Sun Yat-sen spent his childhood here, where his revolutionary ideas first took shape. Visitors can explore the well-preserved interiors, including his study, kitchen, and courtyard well, which offer a glimpse into his daily life. The museum also exhibits artifacts and documents detailing his life and revolutionary journey.</p>
-            
-            <img src="https://imgur.com/fDHMJwU.jpg" alt="Sun Yat-sen's Former Residence Architecture">
-            
-            <p>The museum was built with funds provided by Sun Yat-sen's elder brother, Sun Mei (孫眉). This two-story building combines brick-and-wood construction with a fusion of Chinese and Western architectural styles. Its ochre-red exterior walls (赭紅色外牆), blending traditional Lingnan residential design (嶺南民居) with Western-style arcades (拱廊), attract visitors' attention and invite them to explore its rich cultural heritage.</p>
-            
-            <p>As the museum is situated within a historic village, it enables visitors to experience the lifestyle and culture of Cuihang Village during the late Qing and early Republican era (清末民初), offering an enriching sense of historical immersion.</p>
+            <!-- 第三段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>The museum was built with funds provided by Sun Yat-sen's elder brother, <span class="keyword">Sun Mei (孫眉)</span>. This two-story building combines brick-and-wood construction with a fusion of Chinese and Western architectural styles. Its <span class="keyword">ochre-red exterior walls (赭紅色外牆)</span>, blending traditional <span class="keyword">Lingnan residential design (嶺南民居)</span> with <span class="keyword">Western-style arcades (拱廊)</span>, attract visitors' attention and invite them to explore its rich cultural heritage.</p>
+                    <p>As the museum is situated within a historic village, it enables visitors to experience the lifestyle and culture of Cuihang Village during the <span class="keyword">late Qing and early Republican era (清末民初)</span>, offering an enriching sense of historical immersion.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/fDHMJwU.jpg" alt="Sun Yat-sen's Former Residence Architecture">
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="navigation">
