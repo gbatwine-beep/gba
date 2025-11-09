@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,67 +14,118 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: #333;
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 18px;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .location-header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 3px solid #e67e22;
         }
         
         .location-header h1 {
             font-size: 2.5em;
             color: #003366;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            text-decoration: underline;
         }
         
         .content-section {
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
         
-        .content-section img {
-            width: 60%;
-            height: 400px;
+        /* 文字与图片环绕布局 - 使用stretch使两侧等高 */
+        .text-with-image {
+            display: flex;
+            align-items: stretch; /* 改为stretch使两侧等高 */
+            gap: 20px;
+            margin: 20px 0;
+            min-height: 300px; /* 设置最小高度确保视觉平衡 */
+        }
+        
+        .text-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-with-image .image-side {
+            flex: 0 0 45%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .text-with-image .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 文字垂直居中 */
+        }
+        
+        /* 调整图片容器高度，使其与文字高度更匹配 */
+        .image-container {
+            width: 100%;
+            position: relative;
+            height: 100%; /* 改为100%高度填充容器 */
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #e67e22;
+        }
+        
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
+            object-position: center 30%; /* 调整图片显示位置，裁剪上下部分 */
         }
         
+        /* 字体大小 */
         .content-section p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
+            font-size: 1.15em;
+            margin-bottom: 15px;
             text-align: justify;
+        }
+        
+        /* 关键词样式 */
+        .keyword {
+            font-weight: bold;
+            color: #003366;
+        }
+        
+        /* 仅斜体样式 */
+        .italic {
+            font-style: italic;
+            font-weight: normal;
         }
         
         .navigation {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
+            margin-top: 30px;
+            padding-top: 20px;
             border-top: 2px solid #e67e22;
         }
         
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            margin: 0 15px;
+            padding: 12px 25px;
+            margin: 0 10px;
             background: #003366;
             color: white;
             text-decoration: none;
@@ -90,9 +141,14 @@
         }
         
         @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                padding: 10px;
+            }
+            
             .container {
-                padding: 20px;
-                margin: 10px;
+                padding: 15px;
+                margin: 5px;
             }
             
             .location-header h1 {
@@ -101,12 +157,27 @@
             
             .btn {
                 display: block;
-                margin: 10px 0;
+                margin: 8px 0;
             }
             
-            .content-section img {
-                width: 95%;
-                height: 300px;
+            .text-with-image {
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto; /* 移动端取消最小高度 */
+            }
+            
+            .text-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .text-with-image .image-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px; /* 移动端设置固定高度 */
+            }
+            
+            .text-with-image .text-side {
+                justify-content: flex-start; /* 移动端文字顶部对齐 */
             }
         }
     </style>
@@ -118,21 +189,53 @@
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/F90436d.jpg" alt="Victoria Peak">
+            <!-- 第一段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>Victoria Peak, locally known simply as <span class="keyword">"The Peak" (山頂)</span>, is Hong Kong's premier vantage point. At 552 meters above sea level, it offers the best panoramic views of Victoria Harbour. Developed during the <span class="keyword">19th-century British colonial era (19世紀英國殖民時期)</span> as a summer retreat, the Peak remains a must-visit destination.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/F90436d.jpg" alt="Victoria Peak">
+                    </div>
+                </div>
+            </div>
             
-            <p>Victoria Peak, locally known simply as "The Peak" (山頂), is Hong Kong's premier vantage point. At 552 meters above sea level, it offers the best panoramic views of Victoria Harbour. Developed during the 19th-century British colonial era (19世紀英國殖民時期) as a summer retreat, the Peak remains a must-visit destination.</p>
+            <!-- 第二段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p><span class="keyword">The Peak Tower (山頂凌霄閣)</span>, an architectural marvel, showcases cutting-edge design and houses attractions such as <span class="keyword">Madame Tussauds Hong Kong (香港杜莎夫人蠟像館)</span> and <span class="keyword">Peak Tram Historical Gallery (山頂纜車歷史珍藏館)</span>. Visitors can also ascend to <span class="keyword">Sky Terrace 428 (凌霄閣摩天台428)</span>—the highest 360° viewing platform in Hong Kong at 428 meters above sea level—for unparalleled day and night vistas.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/pYvIAcr.jpg" alt="Peak Tower">
+                    </div>
+                </div>
+            </div>
             
-            <img src="https://imgur.com/pYvIAcr.jpg" alt="Peak Tower">
+            <!-- 第三段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p><span class="keyword">The Peak Tram (山頂纜車)</span>, which opened in 1888, connects the Peak and Central. With its unique 45-degree tilt design, it is one of the oldest cable car systems in the world and still maintains a record of safe operation. Many tourists take the Peak Tram to the Peak. In addition, we can also take buses, minibuses, and taxis to the Peak.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/MSCl6fo.jpg" alt="Peak Tram">
+                    </div>
+                </div>
+            </div>
             
-            <p>The Peak Tower (山頂凌霄閣), an architectural marvel, showcases cutting-edge design and houses attractions such as Madame Tussauds Hong Kong (香港杜莎夫人蠟像館) and Peak Tram Historical Gallery (山頂纜車歷史珍藏館). Visitors can also ascend to Sky Terrace 428 (凌霄閣摩天台428)—the highest 360° viewing platform in Hong Kong at 428 meters above sea level—for unparalleled day and night vistas.</p>
-            
-            <img src="https://imgur.com/MSCl6fo.jpg" alt="Peak Tram">
-            
-            <p>The Peak Tram, which opened in 1888, connects the Peak and Central. With its unique 45-degree tilt design, it is one of the oldest cable car systems in the world and still maintains a record of safe operation. Many tourists take the Peak Tram to the Peak. In addition, we can also take buses, minibuses, and taxis to the Peak.</p>
-            
-            <img src="https://imgur.com/7tZYg99.jpg" alt="Hong Kong View from Peak">
-            
-            <p>Hong Kong's unique charm lies in its perfect combination of the tranquility of Victoria Peak and the vitality of Victoria Harbour. This dual quality also reflects Hong Kong's role in the GBA - both a thoughtful global financial center and an engine of innovation. As the GBA continues to develop, Hong Kong will continue to play an indispensable role as a bridge connecting China and the world with its unique legacy and forward-looking vision.</p>
+            <!-- 第四段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>Hong Kong's unique charm lies in its perfect combination of the tranquility of Victoria Peak and the vitality of Victoria Harbour. This dual quality also reflects Hong Kong's role in the <span class="keyword">GBA (大灣區)</span> - both a thoughtful global financial center and an engine of innovation. As the GBA continues to develop, Hong Kong will continue to play an indispensable role as a bridge connecting China and the world with its unique legacy and forward-looking vision.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/7tZYg99.jpg" alt="Hong Kong View from Peak">
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="navigation">
