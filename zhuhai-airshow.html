@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,75 +14,118 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: #333;
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 18px;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .city-header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 3px solid #e67e22;
         }
         
         .city-header h1 {
-            font-size: 2.8em;
+            font-size: 2.5em;
             color: #003366;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-decoration: underline;
         }
         
         .content-section {
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
         
-        .content-section img {
-            width: 60%;
-            height: 400px;
+        /* 文字与图片环绕布局 - 使用stretch使两侧等高 */
+        .text-with-image {
+            display: flex;
+            align-items: stretch; /* 改为stretch使两侧等高 */
+            gap: 20px;
+            margin: 20px 0;
+            min-height: 300px; /* 设置最小高度确保视觉平衡 */
+        }
+        
+        .text-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-with-image .image-side {
+            flex: 0 0 45%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .text-with-image .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 文字垂直居中 */
+        }
+        
+        /* 调整图片容器高度，使其与文字高度更匹配 */
+        .image-container {
+            width: 100%;
+            position: relative;
+            height: 100%; /* 改为100%高度填充容器 */
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #e67e22;
+        }
+        
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
+            object-position: center 30%; /* 调整图片显示位置，裁剪上下部分 */
         }
         
-        /* 为第一张图片设置不裁剪的样式 */
-        .content-section img[src="https://imgur.com/HtxGfqF.jpg"] {
+        /* 为特定图片设置不裁剪的样式 */
+        .image-container.contain img {
             object-fit: contain;
-            height: auto;
-            max-height: 400px;
+            background-color: #f8f9fa;
         }
         
+        /* 字体大小 */
         .content-section p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
+            font-size: 1.15em;
+            margin-bottom: 15px;
             text-align: justify;
+        }
+        
+        /* 关键词样式 */
+        .keyword {
+            font-weight: bold;
+            color: #003366;
         }
         
         .navigation {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
+            margin-top: 30px;
+            padding-top: 20px;
             border-top: 2px solid #e67e22;
         }
         
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            margin: 0 15px;
+            padding: 12px 25px;
+            margin: 0 10px;
             background: #003366;
             color: white;
             text-decoration: none;
@@ -98,28 +141,43 @@
         }
         
         @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                padding: 10px;
+            }
+            
             .container {
-                padding: 20px;
-                margin: 10px;
+                padding: 15px;
+                margin: 5px;
             }
             
             .city-header h1 {
-                font-size: 2.2em;
+                font-size: 2em;
             }
             
             .btn {
                 display: block;
-                margin: 10px 0;
+                margin: 8px 0;
             }
             
-            .content-section img {
-                width: 95%;
-                height: 300px;
+            .text-with-image {
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto; /* 移动端取消最小高度 */
             }
             
-            .content-section img[src="https://imgur.com/HtxGfqF.jpg"] {
-                width: 95%;
-                max-height: 300px;
+            .text-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .text-with-image .image-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px; /* 移动端设置固定高度 */
+            }
+            
+            .text-with-image .text-side {
+                justify-content: flex-start; /* 移动端文字顶部对齐 */
             }
         }
     </style>
@@ -131,17 +189,41 @@
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/9SBVSuG.jpg" alt="Zhuhai Airshow International">
+            <!-- 第一段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p><span class="keyword">China International Aviation & Aerospace Exhibition (中國國際航空航太博覽會)</span> is also known as <span class="keyword">Airshow China (中國航展)</span>, which is the largest aviation exhibition in mainland China. This Airshow has been held every 2 years since 1996 in Zhuhai, supporting the growth of the aviation industry, such as aircraft, private flying, and air tourism.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/9SBVSuG.jpg" alt="Zhuhai Airshow International">
+                    </div>
+                </div>
+            </div>
             
-            <p>China International Aviation & Aerospace Exhibition is also known as Airshow China, which is the largest aviation exhibition in mainland China. This Airshow has been held every 2 years since 1996 in Zhuhai, supporting the growth of the aviation industry, such as aircraft, private flying, and air tourism.</p>
+            <!-- 第二段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>The airshow features a wide range of global displays about innovative aviation and aerospace technology. <span class="keyword">Civi aircraft C919 (C919民用飛機)</span>, China's first domestically developed large passenger aircraft, has been showcased at the airshow. It highlights China's advancements in aerospace technology, attracting significant attention from industry professionals and aviation enthusiasts. Rapid advancements in <span class="keyword">drone technology (無人機技術)</span> have also been demonstrated at the airshow in Zhuhai, and it allows participants to get a real experience in drone operation.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/szxAzpZ.jpg" alt="Zhuhai Airshow Aircraft">
+                    </div>
+                </div>
+            </div>
             
-            <img src="https://imgur.com/szxAzpZ.jpg" alt="Zhuhai Airshow Aircraft">
-            
-            <p>The airshow features a wide range of global displays about innovative aviation and aerospace technology. Civi aircraft C919, China's first domestically developed large passenger aircraft, has been showcased at the airshow. It highlights China's advancements in aerospace technology, attracting significant attention from industry professionals and aviation enthusiasts. Rapid advancements in drone technology have also been demonstrated at the airshow in Zhuhai, and it allows participants to get a real experience in drone operation.</p>
-            
-            <img src="https://imgur.com/CuJbXs9.jpg" alt="Zhuhai Airshow Exhibition">
-            
-            <p>The China International Aviation & Aerospace Exhibition serves as a significant platform for promoting international exchange and economic cooperation. A remarkable increase in foreign participation was recorded in Airshow China 2024, which attracted over 40 countries and regions joining the event.</p>
+            <!-- 第三段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>The China International Aviation & Aerospace Exhibition serves as a significant platform for promoting <span class="keyword">international exchange and economic cooperation (國際交流與經濟合作)</span>. A remarkable increase in foreign participation was recorded in Airshow China 2024, which attracted over40 countries and regions joining the event.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/CuJbXs9.jpg" alt="Zhuhai Airshow Exhibition">
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="navigation">
