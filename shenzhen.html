@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,77 +14,128 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: #333;
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 18px;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .city-header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 3px solid #e67e22;
         }
         
         .city-header h1 {
-            font-size: 2.8em;
+            font-size: 2.5em;
             color: #003366;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-decoration: underline;
         }
         
         .content-section {
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
         
-        .content-section img {
-            width: 60%;
-            height: 400px;
+        /* 文字与图片环绕布局 - 使用stretch使两侧等高 */
+        .text-with-image {
+            display: flex;
+            align-items: stretch; /* 改为stretch使两侧等高 */
+            gap: 20px;
+            margin: 20px 0;
+            min-height: 300px; /* 设置最小高度确保视觉平衡 */
+        }
+        
+        .text-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-with-image .image-side {
+            flex: 0 0 45%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .text-with-image .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 文字垂直居中 */
+        }
+        
+        /* 调整图片容器高度，使其与文字高度更匹配 */
+        .image-container {
+            width: 100%;
+            position: relative;
+            height: 100%; /* 改为100%高度填充容器 */
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #e67e22;
+        }
+        
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
+            object-position: center 30%; /* 调整图片显示位置，裁剪上下部分 */
         }
         
+        /* 字体大小 */
         .content-section p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
+            font-size: 1.15em;
+            margin-bottom: 15px;
             text-align: justify;
+        }
+        
+        /* 关键词样式 */
+        .keyword {
+            font-weight: bold;
+            color: #003366;
+        }
+        
+        /* 仅斜体样式 */
+        .italic {
+            font-style: italic;
+            font-weight: normal;
         }
         
         .question-box {
             background: #f8f9fa;
-            padding: 30px;
+            padding: 20px;
             border-radius: 12px;
-            margin: 35px 0;
+            margin: 25px 0;
             border-left: 6px solid #2196f3;
+            clear: both;
         }
         
         .question-box p {
-            font-size: 1.2em;
-            font-weight: bold;
+            font-size: 1.15em;
+            font-weight: normal;
             color: #003366;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
         }
         
         .choice {
             display: block;
-            margin: 20px 0;
-            padding: 20px;
+            margin: 15px 0;
+            padding: 15px;
             background: white;
             border: 2px solid #e67e22;
             border-radius: 10px;
@@ -104,15 +155,15 @@
         
         .navigation {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
+            margin-top: 30px;
+            padding-top: 20px;
             border-top: 2px solid #e67e22;
         }
         
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            margin: 0 15px;
+            padding: 12px 25px;
+            margin: 0 10px;
             background: #003366;
             color: white;
             text-decoration: none;
@@ -128,23 +179,43 @@
         }
         
         @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                padding: 10px;
+            }
+            
             .container {
-                padding: 20px;
-                margin: 10px;
+                padding: 15px;
+                margin: 5px;
             }
             
             .city-header h1 {
-                font-size: 2.2em;
+                font-size: 2em;
             }
             
             .btn {
                 display: block;
-                margin: 10px 0;
+                margin: 8px 0;
             }
             
-            .content-section img {
-                width: 95%;
-                height: 300px;
+            .text-with-image {
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto; /* 移动端取消最小高度 */
+            }
+            
+            .text-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .text-with-image .image-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px; /* 移动端设置固定高度 */
+            }
+            
+            .text-with-image .text-side {
+                justify-content: flex-start; /* 移动端文字顶部对齐 */
             }
         }
     </style>
@@ -156,20 +227,44 @@
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/N9H2Fi7.jpg" alt="Shenzhen">
+            <!-- 第一段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>Shenzhen is a key player in the global technology landscape. As a <span class="keyword">special economic zone (經濟特區)</span> and a <span class="keyword">national innovative city (國家創新型城市)</span>, it is recognized for its technological achievements, including <span class="keyword">wireless technology (無線技術)</span>, <span class="keyword">information and communication technology (ICT) (信息通信技術)</span>, and <span class="keyword">artificial intelligence (AI)</span>.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/N9H2Fi7.jpg" alt="Shenzhen">
+                    </div>
+                </div>
+            </div>
             
-            <p>Shenzhen is a key player in the global technology landscape. As a special economic zone and a national innovative city, it is recognized for its technological achievements, including wireless technology, information and communication technology (ICT), and artificial intelligence (AI).</p>
+            <!-- 第二段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>Shenzhen is particularly noted for its advancements in <span class="keyword">5G technology</span>. It has also achieved significant advancements in <span class="keyword">electric vehicles (電動汽車)</span>, transitioning its public transport to electric and enhancing <span class="keyword">smart manufacturing (智能製造)</span> through automation and robotics to enhance production efficiency.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/a66fmt5.jpg" alt="Shenzhen Technology">
+                    </div>
+                </div>
+            </div>
             
-            <img src="https://imgur.com/a66fmt5.jpg" alt="Shenzhen Technology">
-            
-            <p>Shenzhen is particularly noted for its advancements in 5G technology. It has also achieved significant advancements in electric vehicles, transitioning its public transport to electric and enhancing smart manufacturing through automation and robotics to enhance production efficiency.</p>
-            
-            <img src="https://imgur.com/nXwkNIk.jpg" alt="Shenzhen Innovation">
-            
-            <p>Shenzhen is a dynamic technology hub renowned for its rapid growth and innovation. The Shenzhen Innovation and Technology Bureau actively promotes research and development by offering incentives to both startups and established companies. Entrepreneurs are attracted to the city due to its abundant access to capital, talent, and resources.</p>
+            <!-- 第三段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>Shenzhen is a dynamic technology hub renowned for its rapid growth and innovation. The <span class="keyword">Shenzhen Innovation and Technology Bureau (深圳市科技創新委員會)</span> actively promotes research and development by offering incentives to both startups and established companies. Entrepreneurs are attracted to the city due to its abundant access to capital, talent, and resources.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/nXwkNIk.jpg" alt="Shenzhen Innovation">
+                    </div>
+                </div>
+            </div>
             
             <div class="question-box">
-                <p>If you are the K3 class teacher and would like to teach your K3 students about China's technological achievements, where will you go in Shenzhen?</p>
+                <p><span class="keyword">If you are the K3 class teacher and would like to teach your K3 students about <span class="italic">China's technological achievements</span>, where will you go in Shenzhen?</span></p>
                 
                 <a href="dji-flagship.html" class="choice">A. DJI Flagship Store (大疆深圳歡樂海岸旗艦店)</a>
                 <a href="shenzhen-science-museum.html" class="choice">B. Shenzhen Science and Technology Museum (深圳科學技術館)</a>
@@ -177,7 +272,7 @@
         </div>
         
         <div class="navigation">
-            <a href="index.html" class="btn">Back to Home</a>
+            <a href="index.html" class="btn">Back to Home (返回首頁)</a>
         </div>
     </div>
 </body>
