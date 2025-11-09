@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,21 +48,61 @@
             margin-bottom: 40px;
         }
         
-        .content-section img {
-            width: 60%;
-            height: 400px;
+        /* 文字与图片环绕布局 */
+        .text-with-image {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            margin: 20px 0;
+            min-height: 300px;
+        }
+        
+        .text-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-with-image .image-side {
+            flex: 0 0 45%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .text-with-image .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .image-container {
+            width: 100%;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #e67e22;
+        }
+        
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
+            object-position: center 30%;
         }
         
         .content-section p {
-            font-size: 1.1em;
+            font-size: 1.3em;
             margin-bottom: 20px;
             text-align: justify;
+        }
+        
+        .keyword {
+            font-weight: bold;
+            color: #003366;
         }
         
         .navigation {
@@ -82,7 +122,7 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.3em;
         }
         
         .btn:hover {
@@ -105,9 +145,28 @@
                 margin: 10px 0;
             }
             
-            .content-section img {
-                width: 95%;
-                height: 300px;
+            .text-with-image {
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto;
+            }
+            
+            .text-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .text-with-image .image-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px;
+            }
+            
+            .text-with-image .text-side {
+                justify-content: flex-start;
+            }
+            
+            .content-section p {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -115,19 +174,45 @@
 <body>
     <div class="container">
         <div class="city-header">
-            <h1>Traditional Papermaking Research and Study Base 古法造紙研學基地</h1>
+            <h1>Traditional Papermaking Research and Study Base <span class="keyword">(古法造紙研學基地)</span></h1>
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/jVBi3Wy.jpg" alt="Traditional Papermaking">
+            <!-- 第一段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p><span class="keyword">Papermaking (造紙術)</span> is one of <span class="keyword">China's Four Great Inventions (中國古代的四大發明)</span> and also part of the nation's significant <span class="keyword">intangible cultural heritage (非物質文化遺產)</span>. As the first village of traditional papermaking, <span class="keyword">Fuli Village (扶利村)</span> in Zhaoqing has been passing down its traditional papermaking techniques for over eight hundred years since the <span class="keyword">Southern Song Dynasty (南宋)</span> till now. This craft has also been included in the <span class="keyword">Guangdong Provincial Intangible Cultural Heritage List (廣東省非物質文化遺產名錄)</span>.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/jVBi3Wy.jpg" alt="Traditional Papermaking">
+                    </div>
+                </div>
+            </div>
             
-            <p>Papermaking (造紙術) is one of China's Four Great Inventions (中國古代的四大發明) and also part of the nation's significant intangible cultural heritage. As the first village of traditional papermaking (中國古法造紙第一村), Fuli Village (扶利村) in Zhaoqing has been passing down its traditional papermaking techniques for over eight hundred years since the Southern Song Dynasty till now. This craft has also been included in the Guangdong Provincial Intangible Cultural Heritage List.</p>
+            <!-- 第二段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>With the rise of the <span class="keyword">"intangible cultural heritage + tourism" (非遺+旅遊)</span> and <span class="keyword">"intangible cultural heritage + cultural creativity" (非遺+文創)</span> modes, the traditional papermaking research and study base was established in 2024 in the Fuli village to help people of different ages to recognize and understand this intangible cultural heritage craft. Through the four processes including exploration, study, practice, and reflection, participants can explore the entire handmade papermaking process through firsthand experience, from selecting materials to producing finished products, fostering a deeper appreciation for papermaking history and cultural heritage.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/32XOzfn.jpg" alt="Papermaking Process">
+                    </div>
+                </div>
+            </div>
             
-            <img src="https://imgur.com/32XOzfn.jpg" alt="Papermaking Process">
-            
-            <p>With the rise of the "intangible cultural heritage + tourism" (非遺+旅遊) and "intangible cultural heritage + cultural creativity" (非遺+文創) modes, the traditional papermaking research and study base was established in 2024 in the Fuli village to help people of different ages to recognize and understand this intangible cultural heritage craft. Through the four processes including exploration, study, practice, and reflection, participants can explore the entire handmade papermaking process through firsthand experience, from selecting materials to producing finished products, fostering a deeper appreciation for papermaking history and cultural heritage.</p>
-            
-            <img src="https://imgur.com/Bv9G19K.jpg" alt="Papermaking Heritage">
+            <!-- 第三段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>The traditional papermaking research and study base offers visitors a unique opportunity to engage with this ancient craft through hands-on workshops and educational programs. Participants can learn about the traditional methods of papermaking, from harvesting raw materials to the final product. The base also serves as a platform for cultural exchange, promoting the preservation and innovation of traditional crafts while fostering a deeper understanding and appreciation of China's rich cultural heritage among younger generations.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/Bv9G19K.jpg" alt="Papermaking Heritage">
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="navigation">
