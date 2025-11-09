@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,21 +48,61 @@
             margin-bottom: 40px;
         }
         
-        .content-section img {
-            width: 60%;
-            height: 400px;
+        /* 文字与图片环绕布局 */
+        .text-with-image {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            margin: 20px 0;
+            min-height: 300px;
+        }
+        
+        .text-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-with-image .image-side {
+            flex: 0 0 45%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .text-with-image .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .image-container {
+            width: 100%;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #e67e22;
+        }
+        
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
+            object-position: center 30%;
         }
         
         .content-section p {
-            font-size: 1.1em;
+            font-size: 1.3em;
             margin-bottom: 20px;
             text-align: justify;
+        }
+        
+        .keyword {
+            font-weight: bold;
+            color: #003366;
         }
         
         .navigation {
@@ -82,7 +122,7 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.3em;
         }
         
         .btn:hover {
@@ -105,9 +145,28 @@
                 margin: 10px 0;
             }
             
-            .content-section img {
-                width: 95%;
-                height: 300px;
+            .text-with-image {
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto;
+            }
+            
+            .text-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .text-with-image .image-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px;
+            }
+            
+            .text-with-image .text-side {
+                justify-content: flex-start;
+            }
+            
+            .content-section p {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -115,22 +174,45 @@
 <body>
     <div class="container">
         <div class="city-header">
-            <h1>Luofu Mountain Scenic Area (羅浮山景區)</h1>
+            <h1>Luofu Mountain Scenic Area <span class="keyword">(羅浮山景區)</span></h1>
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/8S255TS.jpg" alt="Luofu Mountain">
+            <!-- 第一段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p><span class="keyword">Mount Luofu (羅浮山)</span> is one of the <span class="keyword">ten famous Taoist mountains in China (十大道教名山之一)</span>. It is awarded as a <span class="keyword">national 5A-rated tourist attraction (國家5A級旅遊景區)</span>.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/8S255TS.jpg" alt="Luofu Mountain">
+                    </div>
+                </div>
+            </div>
             
-            <p>Mount Luofu is one of the ten famous Taoist mountains in China (十大道教名山之一). It is awarded as a national 5A-rated tourist attraction (國家5A級旅遊景區).</p>
+            <!-- 第二段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>The main peak of Mount Luofu is <span class="keyword">Feiyunding (飛雲頂)</span>, which is 1,296 meters above sea level. It is a national key scenic spot and summer resort in China, and is known as the <span class="keyword">"Foremost Peak of Lingnan" (嶺南第一山)</span>.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/6uzgdPZ.jpg" alt="Luofu Mountain Peak">
+                    </div>
+                </div>
+            </div>
             
-            <img src="https://imgur.com/6uzgdPZ.jpg" alt="Luofu Mountain Peak">
-            
-            <p>The main peak of Mount Luofu is Feiyunding (飛雲頂), which is 1,296 meters above sea level. It is a national key scenic spot and summer resort in China, and is known as the "Foremost Peak of Lingnan" (「嶺南第一山」).</p>
-            
-            <img src="https://imgur.com/vRvqm6n.jpg" alt="Luofu Mountain Waterfall">
-            
-            <p>Mount Luofu is characterized by three main features: a) unique peaks and rocks (奇峰怪石), b) beautiful waterfalls and springs (飛瀑名泉), and c) intriguing caves and wonders (洞天奇景). Each zone offers distinct experiences for visitors and highlights the natural beauty of the area. The majestic mountains and caves create a mystical landscape that has attracted numerous poets and philosophers for centuries. Renowned literary figures such as Li Bai (李白), Du Fu (杜甫), Han Yu (韓愈), and Su Shi (蘇軾) have composed verses that beautifully capture the mountain's sublime beauty.</p>
-
+            <!-- 第三段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>Mount Luofu is characterized by three main features: a) <span class="keyword">unique peaks and rocks (奇峰怪石)</span>, b) <span class="keyword">beautiful waterfalls and springs (飛瀑名泉)</span>, and c) <span class="keyword">intriguing caves and wonders (洞天奇景)</span>. Each zone offers distinct experiences for visitors and highlights the natural beauty of the area. The majestic mountains and caves create a mystical landscape that has attracted numerous poets and philosophers for centuries. Renowned literary figures such as <span class="keyword">Li Bai (李白)</span>, <span class="keyword">Du Fu (杜甫)</span>, <span class="keyword">Han Yu (韓愈)</span>, and <span class="keyword">Su Shi (蘇軾)</span> have composed verses that beautifully capture the mountain's sublime beauty.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/vRvqm6n.jpg" alt="Luofu Mountain Waterfall">
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="navigation">
