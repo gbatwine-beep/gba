@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,21 +48,61 @@
             margin-bottom: 40px;
         }
         
-        .content-section img {
-            width: 60%;
-            height: 400px;
+        /* 文字与图片环绕布局 */
+        .text-with-image {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            margin: 20px 0;
+            min-height: 300px;
+        }
+        
+        .text-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-with-image .image-side {
+            flex: 0 0 45%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .text-with-image .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .image-container {
+            width: 100%;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #e67e22;
+        }
+        
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
+            object-position: center 30%;
         }
         
         .content-section p {
-            font-size: 1.1em;
+            font-size: 1.3em;
             margin-bottom: 20px;
             text-align: justify;
+        }
+        
+        .keyword {
+            font-weight: bold;
+            color: #003366;
         }
         
         .navigation {
@@ -82,7 +122,7 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.3em;
         }
         
         .btn:hover {
@@ -105,9 +145,28 @@
                 margin: 10px 0;
             }
             
-            .content-section img {
-                width: 95%;
-                height: 300px;
+            .text-with-image {
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto;
+            }
+            
+            .text-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .text-with-image .image-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px;
+            }
+            
+            .text-with-image .text-side {
+                justify-content: flex-start;
+            }
+            
+            .content-section p {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -115,19 +174,39 @@
 <body>
     <div class="container">
         <div class="city-header">
-            <h1>Xiaolan Shuangmei Mansion (小欖雙美府)</h1>
+            <h1>Xiaolan Shuangmei Mansion <span class="keyword">(小欖雙美府)</span></h1>
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/TjeSIWW.jpg" alt="Xiaolan Shuangmei Mansion">
+            <!-- 第一段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p><span class="keyword">Xiaolan Shuangmei Mansion (小欖雙美府)</span> was recognized as a historical building of Zhongshan and designated as a <span class="keyword">Provincial Cultural Heritage Site (省級文物保護單位)</span> in 2019. Shuangmei Mansion exemplifies the fusion of traditional <span class="keyword">Lingnan (Cantonese) architecture (廣府傳統民居)</span> and <span class="keyword">Nanyang (Southeast Asian) colonial (南洋殖民)</span> influences, making it a masterpiece of <span class="keyword">overseas Chinese architecture (華僑建築)</span> in Zhongshan.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/TjeSIWW.jpg" alt="Xiaolan Shuangmei Mansion">
+                    </div>
+                </div>
+            </div>
             
-            <p>Xiaolan Shuangmei Mansion (小欖雙美府) was recognized as a historical building of Zhongshan (中山市歷史建築) and designated as a Provincial Cultural Heritage Site in 2019 (省級文物保護單位). Shuangmei Mansion exemplifies the fusion of traditional Lingnan (Cantonese) architecture (廣府傳統民居) and Nanyang (Southeast Asian) colonial (南洋殖民) influences, making it a masterpiece of overseas Chinese architecture (華僑建築) in Zhongshan. The mansion's primary wooden framework (主體架構) utilizes traditional Lingnan mortise-and-tenon (榫卯) joinery, which secures the structure without the use of nails or metal fasteners, demonstrating the ingenuity of Chinese timber architecture.</p>
+            <!-- 第二段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>The mansion's primary <span class="keyword">wooden framework (主體架構)</span> utilizes traditional Lingnan <span class="keyword">mortise-and-tenon (榫卯)</span> joinery, which secures the structure without the use of nails or metal fasteners, demonstrating the ingenuity of Chinese timber architecture.</p>
+                    <p>The complex harmoniously blends <span class="keyword">blue-brick houses (青磚房屋)</span> with curved <span class="keyword">"wok ear" gables (鑊耳山牆)</span> and <span class="keyword">stained-glass European windows (彩色玻璃歐式窗戶)</span>, while its courtyards feature traditional <span class="keyword">Cantonese sliding lattice doors (趟櫳門)</span> alongside <span class="keyword">Roman-style fountains (羅馬噴泉)</span>.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/ZYf3Ff2.jpg" alt="Xiaolan Shuangmei Mansion Architecture">
+                    </div>
+                </div>
+            </div>
             
-            <img src="https://imgur.com/ZYf3Ff2.jpg" alt="Xiaolan Shuangmei Mansion Architecture">
-            
-            <p>The complex harmoniously blends blue-brick houses with curved "wok ear" gables (鑊耳山牆) and stained-glass European windows, while its courtyards feature traditional Cantonese sliding lattice doors (趟櫳門) alongside Roman-style fountains (羅馬噴泉).</p>
-            
-            <p>The site contributes to the preservation of the local culture and history that Dr. Sun Yat-sen (孫中山) emphasized in his vision for a modern China, highlighting the importance of cultural identity.</p>
+            <!-- 第三段文字 -->
+            <div class="content-section">
+                <p>The site contributes to the preservation of the local culture and history that <span class="keyword">Dr. Sun Yat-sen (孫中山)</span> emphasized in his vision for a modern China, highlighting the importance of cultural identity.</p>
+            </div>
         </div>
         
         <div class="navigation">
