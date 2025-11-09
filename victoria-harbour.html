@@ -49,23 +49,6 @@
             margin-bottom: 25px;
         }
         
-        /* 第一张图片 - 减少高度 */
-        .main-image {
-            margin: 15px 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
-            height: 280px;
-        }
-        
-        .main-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        
         /* 文字与图片环绕布局 - 使用stretch使两侧等高 */
         .text-with-image {
             display: flex;
@@ -193,10 +176,6 @@
                 height: 250px; /* 移动端设置固定高度 */
             }
             
-            .main-image {
-                height: 200px;
-            }
-            
             .text-with-image .text-side {
                 justify-content: flex-start; /* 移动端文字顶部对齐 */
             }
@@ -210,21 +189,16 @@
         </div>
         
         <div class="content-section">
-            <!-- 第一张图片 -->
-            <div class="main-image">
-                <img src="https://images.unsplash.com/photo-1595867818082-083862f3d630?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Victoria Harbour">
-            </div>
-            
             <!-- 第一段文字与图片环绕 -->
             <div class="text-with-image">
                 <div class="text-side">
                     <p>Victoria Harbour is one of the most distinguished natural harbours in the world, serving as a stunning centerpiece for Hong Kong's skyline. It also earns a nickname <span class="keyword">"Pearl of the Orient" (東方之珠)</span>, underscoring its enduring role as a global metropolis in driving the city's economy and tourism.</p>
                     
-                    <p>In addition, Victoria Harbour's transportation network is extensive, with the feature of historic <span class="keyword">Star Ferry</span>, three cross-harbor tunnels, and an extensive ferry network connecting multiple piers across Hong Kong Island and Kowloon. Spanning 41.88 square kilometers with a maximum depth of 14.5 meters, its superior geographical conditions also lead it to be one of the world's busiest container ports.</p>
+                    <p>In addition, Victoria Harbour's transportation network is extensive, with the feature of historic <span class="keyword">Star Ferry (天星小輪)</span>, three cross-harbor tunnels, and an extensive ferry network connecting multiple piers across Hong Kong Island and Kowloon. Spanning 41.88 square kilometers with a maximum depth of 14.5 meters, its superior geographical conditions also lead it to be one of the world's busiest container ports.</p>
                 </div>
                 <div class="image-side">
                     <div class="image-container">
-                        <img src="https://images.unsplash.com/photo-1541332246502-bc034c1de16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Victoria Harbour Landmarks">
+                        <img src="https://imgur.com/YcUXcSi.jpg" alt="Victoria Harbour">
                     </div>
                 </div>
             </div>
@@ -232,21 +206,31 @@
             <!-- 第二段文字与图片环绕（方向相反） -->
             <div class="text-with-image reverse">
                 <div class="text-side">
-                    <p>Victoria Harbour is surrounded by iconic landmarks, including the <span class="keyword">Hong Kong Convention and Exhibition Centre</span> (its distinctive wing-shaped extension symbolizes Hong Kong's handover in 1997), the <span class="keyword">Central Ferris Wheel</span> (a 60-meter-tall observation wheel offering breathtaking views of the harbour) and <span class="keyword">Avenue of Stars</span> (a waterfront promenade celebrating Hong Kong's cinematic heritage).</p>
-                    
+                    <p>Victoria Harbour is surrounded by iconic landmarks, including the <span class="keyword">Hong Kong Convention and Exhibition Centre (香港會議展覽中心)</span> (its distinctive wing-shaped extension symbolizes Hong Kong's handover in 1997), the <span class="keyword">Central Ferris Wheel (中環摩天輪)</span> (a 60-meter-tall observation wheel offering breathtaking views of the harbour) and <span class="keyword">Avenue of Stars (星光大道)</span> (a waterfront promenade celebrating Hong Kong's cinematic heritage).</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/FkCgDo5.jpg" alt="Victoria Harbour Landmarks">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第三段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
                     <p><span class="keyword">"A Symphony of Lights" (幻彩詠香江)</span>—the world's largest permanent light and sound show—transforms the harbor into a dazzling spectacle regularly showcasing at 8 in the evening. Synchronized across more than 40 skyscrapers with lasers, LED displays, and music, it encapsulates Hong Kong's vibrancy and creativity.</p>
                 </div>
                 <div class="image-side">
                     <div class="image-container">
-                        <img src="https://images.unsplash.com/photo-1539609413229-9a5033651c04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Symphony of Lights">
+                        <img src="https://imgur.com/BN5GZbH.jpg" alt="Symphony of Lights">
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="navigation">
-            <a href="hongkong.html" class="btn">Back to Hong Kong</a>
-            <a href="index.html" class="btn">Back to Home</a>
+            <a href="hongkong.html" class="btn">Back to Hong Kong (返回香港)</a>
+            <a href="index.html" class="btn">Back to Home (返回首頁)</a>
         </div>
     </div>
 </body>
