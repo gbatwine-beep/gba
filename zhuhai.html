@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,77 +14,128 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: #333;
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 18px;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .city-header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 3px solid #e67e22;
         }
         
         .city-header h1 {
-            font-size: 2.8em;
+            font-size: 2.5em;
             color: #003366;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-decoration: underline;
         }
         
         .content-section {
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
         
-        .content-section img {
-            width: 60%;
-            height: 400px;
+        /* 文字与图片环绕布局 - 使用stretch使两侧等高 */
+        .text-with-image {
+            display: flex;
+            align-items: stretch; /* 改为stretch使两侧等高 */
+            gap: 20px;
+            margin: 20px 0;
+            min-height: 300px; /* 设置最小高度确保视觉平衡 */
+        }
+        
+        .text-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-with-image .image-side {
+            flex: 0 0 45%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .text-with-image .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 文字垂直居中 */
+        }
+        
+        /* 调整图片容器高度，使其与文字高度更匹配 */
+        .image-container {
+            width: 100%;
+            position: relative;
+            height: 100%; /* 改为100%高度填充容器 */
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #e67e22;
+        }
+        
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
+            object-position: center 30%; /* 调整图片显示位置，裁剪上下部分 */
         }
         
+        /* 字体大小 */
         .content-section p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
+            font-size: 1.15em;
+            margin-bottom: 15px;
             text-align: justify;
+        }
+        
+        /* 关键词样式 */
+        .keyword {
+            font-weight: bold;
+            color: #003366;
+        }
+        
+        /* 仅斜体样式 */
+        .italic {
+            font-style: italic;
+            font-weight: normal;
         }
         
         .question-box {
             background: #f8f9fa;
-            padding: 30px;
+            padding: 20px;
             border-radius: 12px;
-            margin: 35px 0;
+            margin: 25px 0;
             border-left: 6px solid #2196f3;
+            clear: both;
         }
         
         .question-box p {
-            font-size: 1.2em;
-            font-weight: bold;
+            font-size: 1.15em;
+            font-weight: normal;
             color: #003366;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
         }
         
         .choice {
             display: block;
-            margin: 20px 0;
-            padding: 20px;
+            margin: 15px 0;
+            padding: 15px;
             background: white;
             border: 2px solid #e67e22;
             border-radius: 10px;
@@ -104,15 +155,15 @@
         
         .navigation {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
+            margin-top: 30px;
+            padding-top: 20px;
             border-top: 2px solid #e67e22;
         }
         
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            margin: 0 15px;
+            padding: 12px 25px;
+            margin: 0 10px;
             background: #003366;
             color: white;
             text-decoration: none;
@@ -128,23 +179,43 @@
         }
         
         @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                padding: 10px;
+            }
+            
             .container {
-                padding: 20px;
-                margin: 10px;
+                padding: 15px;
+                margin: 5px;
             }
             
             .city-header h1 {
-                font-size: 2.2em;
+                font-size: 2em;
             }
             
             .btn {
                 display: block;
-                margin: 10px 0;
+                margin: 8px 0;
             }
             
-            .content-section img {
-                width: 95%;
-                height: 300px;
+            .text-with-image {
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto; /* 移动端取消最小高度 */
+            }
+            
+            .text-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .text-with-image .image-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px; /* 移动端设置固定高度 */
+            }
+            
+            .text-with-image .text-side {
+                justify-content: flex-start; /* 移动端文字顶部对齐 */
             }
         }
     </style>
@@ -156,24 +227,59 @@
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/hxEOLuY.jpg" alt="Zhuhai">
+            <!-- 第一段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>Zhuhai is a vibrant coastal city located in Guangdong Province, and it is well-known for its beautiful scenery and rich culture. It is also an important <span class="keyword">economic hub (經濟樞紐)</span>, focusing on industries such as technology and tourism.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/hxEOLuY.jpg" alt="Zhuhai">
+                    </div>
+                </div>
+            </div>
             
-            <p>Zhuhai is a vibrant coastal city located in Guangdong Province, and it is well-known for its beautiful scenery and rich culture. It is also an important economic hub, focusing on industries such as technology and tourism.</p>
+            <!-- 第二段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>Zhuhai was named the <span class="keyword">most livable city in China (中國最宜居城市)</span> by the Chinese Academy of Social Sciences in 2019. Zhuhai is also effectively integrating technology and multiplying 5G applications in a <span class="keyword">"smart-city approach" (智慧城市方法)</span> in different service industries, including education and tourism, so as to enhance the <span class="keyword">efficiency and sustainability (效率和可持續性)</span> in the city.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/oqDynJO.jpg" alt="Zhuhai City">
+                    </div>
+                </div>
+            </div>
             
-            <img src="https://imgur.com/oqDynJO.jpg" alt="Zhuhai City">
+            <!-- 第三段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>According to the city's <span class="keyword">14th Five-Year Plan (十四五規劃)</span>, Zhuhai will continue to develop into a <span class="keyword">global advanced manufacturing base (全球先進製造業基地)</span> and a centre for <span class="keyword">industrial innovation (產業創新)</span>. Zhuhai is a dynamic city that combines natural beauty, economic growth, and cultural richness.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/jMEzYfP.jpg" alt="Zhuhai Bridge">
+                    </div>
+                </div>
+            </div>
             
-            <p>Zhuhai was named the most livable city in China by the Chinese Academy of Social Sciences in 2019. Zhuhai is also effectively integrating technology and multiplying 5G applications in a "smart-city approach" in different service industries, including education and tourism, so as to enhance the efficiency and sustainability in the city.</p>
-            
-            <img src="https://imgur.com/jMEzYfP.jpg" alt="Zhuhai Bridge">
-            
-            <p>According to the city's 14th Five-Year Plan, Zhuhai will continue to develop into a global advanced manufacturing base and a centre for industrial innovation. Zhuhai is a dynamic city that combines natural beauty, economic growth, and cultural richness.</p>
-            
-            <p>In addition, the Hong Kong-Zhuhai-Macao Bridge has brought Hong Kong and Zhuhai significantly closer together, creating favorable conditions for Hong Kong's participation in the development of Zhuhai.</p>
+            <!-- 第四段文字 -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>In addition, the <span class="keyword">Hong Kong-Zhuhai-Macao Bridge (港珠澳大橋)</span> has brought Hong Kong and Zhuhai significantly closer together, creating favorable conditions for Hong Kong's participation in the development of Zhuhai.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <!-- 由于只有三张图片，这里使用第一张图片作为占位 -->
+                        <img src="https://imgur.com/hxEOLuY.jpg" alt="Zhuhai">
+                    </div>
+                </div>
+            </div>
             
             <div class="question-box">
-                <p>If you are the K3 class teacher and would like to introduce cultural performances and exhibitions in Zhuhai for K3 students, where would you bring them to?</p>
+                <p><span class="keyword">If you are the K3 class teacher and would like to introduce <span class="italic">cultural performances and exhibitions</span> in Zhuhai for K3 students, where would you bring them to?</span></p>
                 
-                <a href="zhuhai-grand-theatre.html" class="choice">A. The Zhuhai Grand Theatre 珠海大劇院</a>
+                <a href="zhuhai-grand-theatre.html" class="choice">A. The Zhuhai Grand Theatre (珠海大劇院)</a>
                 <a href="zhuhai-airshow.html" class="choice">B. China International Aviation & Aerospace Exhibition (中國國際航空航太博覽會), also named as Zhuhai Airshow (珠海航展)</a>
             </div>
         </div>
