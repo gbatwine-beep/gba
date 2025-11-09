@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,74 +14,118 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: #333;
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 18px;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .location-header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 3px solid #e67e22;
         }
         
         .location-header h1 {
             font-size: 2.5em;
             color: #003366;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            text-decoration: underline;
         }
         
         .content-section {
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
         
-        .content-section img {
-            width: 60%;
-            height: 400px;
+        /* 文字与图片环绕布局 - 使用stretch使两侧等高 */
+        .text-with-image {
+            display: flex;
+            align-items: stretch; /* 改为stretch使两侧等高 */
+            gap: 20px;
+            margin: 20px 0;
+            min-height: 300px; /* 设置最小高度确保视觉平衡 */
+        }
+        
+        .text-with-image.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-with-image .image-side {
+            flex: 0 0 45%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .text-with-image .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 文字垂直居中 */
+        }
+        
+        /* 调整图片容器高度，使其与文字高度更匹配 */
+        .image-container {
+            width: 100%;
+            position: relative;
+            height: 100%; /* 改为100%高度填充容器 */
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 2px solid #e67e22;
+        }
+        
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 3px solid #e67e22;
+            object-position: center 30%; /* 调整图片显示位置，裁剪上下部分 */
         }
         
         /* 为特定图片设置不裁剪的样式 */
-        .content-section img[src="https://imgur.com/GzxOd39.jpg"] {
+        .image-container.contain img {
             object-fit: contain;
-            height: auto;
-            max-height: 400px;
+            background-color: #f8f9fa;
         }
         
+        /* 字体大小 */
         .content-section p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
+            font-size: 1.15em;
+            margin-bottom: 15px;
             text-align: justify;
+        }
+        
+        /* 关键词样式 */
+        .keyword {
+            font-weight: bold;
+            color: #003366;
         }
         
         .navigation {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
+            margin-top: 30px;
+            padding-top: 20px;
             border-top: 2px solid #e67e22;
         }
         
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            margin: 0 15px;
+            padding: 12px 25px;
+            margin: 0 10px;
             background: #003366;
             color: white;
             text-decoration: none;
@@ -97,9 +141,14 @@
         }
         
         @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                padding: 10px;
+            }
+            
             .container {
-                padding: 20px;
-                margin: 10px;
+                padding: 15px;
+                margin: 5px;
             }
             
             .location-header h1 {
@@ -108,17 +157,27 @@
             
             .btn {
                 display: block;
-                margin: 10px 0;
+                margin: 8px 0;
             }
             
-            .content-section img {
-                width: 95%;
-                height: 300px;
+            .text-with-image {
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto; /* 移动端取消最小高度 */
             }
             
-            .content-section img[src="https://imgur.com/GzxOd39.jpg"] {
-                width: 95%;
-                max-height: 300px;
+            .text-with-image.reverse {
+                flex-direction: column;
+            }
+            
+            .text-with-image .image-side {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px; /* 移动端设置固定高度 */
+            }
+            
+            .text-with-image .text-side {
+                justify-content: flex-start; /* 移动端文字顶部对齐 */
             }
         }
     </style>
@@ -130,23 +189,46 @@
         </div>
         
         <div class="content-section">
-            <img src="https://imgur.com/WRYa2Nv.jpg" alt="DJI Store Interior">
+            <!-- 第一段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p><span class="keyword">Shenzhen DJI Technology Co., Ltd. (深圳大疆創新科技有限公司)</span>, commonly known as <span class="keyword">DJI (大疆)</span>, is a Chinese technology company specializing in the production and development of <span class="keyword">civilian drones (無人機)</span>, <span class="keyword">aerial photography equipment (航拍照片器材)</span>, optical imaging systems, and automotive components.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/WRYa2Nv.jpg" alt="DJI Store Interior">
+                    </div>
+                </div>
+            </div>
             
-            <p>Shenzhen DJI Technology Co., Ltd. (深圳大疆創新科技有限公司), commonly known as DJI (大疆), is a Chinese technology company specializing in the production and development of civilian drones (無人機), aerial photography equipment （航拍照片器材）, optical imaging systems, and automotive components.</p>
+            <!-- 第二段文字与图片环绕（方向相反） -->
+            <div class="text-with-image reverse">
+                <div class="text-side">
+                    <p>DJI Flagship Store is located in Nanshan District, which is an area known for its technological development. The DJI flagship store focuses on immersive experiences for visitors, showcasing the company's full range of consumer products and hosting interactive offline events. Visitors can experience cutting-edge drone and imaging technology, watch live flight demonstrations, and view stunning <span class="keyword">aerial footage (航拍視頻)</span>.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container contain">
+                        <img src="https://imgur.com/GzxOd39.jpg" alt="DJI Drone Technology">
+                    </div>
+                </div>
+            </div>
             
-            <img src="https://imgur.com/GzxOd39.jpg" alt="DJI Drone Technology">
-            
-            <p>DJI Flagship Store is located in Nanshan District (南山區), which is an area known for its technological development. The DJI flagship store focuses on immersive experiences for visitors, showcasing the company's full range of consumer products and hosting interactive offline events. Visitors can experience cutting-edge drone and imaging technology, watch live flight demonstrations, and view stunning aerial footage (航拍視頻).</p>
-            
-            <img src="https://imgur.com/6X9rLbd.jpg" alt="DJI Products">
-            
-            <p>DJI drones lead the industry in wireless technology applications, establishing the company as a global leader in both commercial and consumer aerial imaging and drone innovation. Starting with commercial autonomous flight control systems, DJI has expanded its product line to include flight controllers, drones, and aerial cameras. These products are widely used in film production, agriculture, construction, search and rescue, and environmental conservation. As of October 2020, DJI holds over 80% of the global market share in civilian and commercial drones (民用和商業無人機), ranking first among commercial drone manufacturers worldwide.</p>
-            
+            <!-- 第三段文字与图片环绕 -->
+            <div class="text-with-image">
+                <div class="text-side">
+                    <p>DJI drones lead the industry in wireless technology applications, establishing the company as a global leader in both commercial and consumer aerial imaging and drone innovation. Starting with commercial autonomous flight control systems, DJI has expanded its product line to include flight controllers, drones, and aerial cameras. These products are widely used in film production, agriculture, construction, search and rescue, and environmental conservation. As of October 2020, DJI holds over 80% of the global market share in <span class="keyword">civilian and commercial drones (民用和商業無人機)</span>, ranking first among commercial drone manufacturers worldwide.</p>
+                </div>
+                <div class="image-side">
+                    <div class="image-container">
+                        <img src="https://imgur.com/6X9rLbd.jpg" alt="DJI Products">
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="navigation">
             <a href="shenzhen.html" class="btn">Back to Shenzhen</a>
-            <a href="index.html" class="btn">Back to Home</a>
+            <a href="index.html" class="btn">Back to Home </a>
         </div>
     </div>
 </body>
